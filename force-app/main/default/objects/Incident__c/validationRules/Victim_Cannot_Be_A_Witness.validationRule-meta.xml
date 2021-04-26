@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Victim_Cannot_Be_A_Witness</fullName>
+    <active>true</active>
+    <description>Victims cannot be the same person as a witness.</description>
+    <errorConditionFormula>Victim__r.Id  =  Witness__r.Id</errorConditionFormula>
+    <errorDisplayField>Witness__c</errorDisplayField>
+    <errorMessage>A victim cannot be a witness.</errorMessage>
+</ValidationRule>
