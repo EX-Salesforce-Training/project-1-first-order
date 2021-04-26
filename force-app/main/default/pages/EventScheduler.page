@@ -1,2 +1,14 @@
-<apex:page >
+<apex:page standardController="Event" recordSetVar="events" extensions="EventSchedulerExtension">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!FindEvents}" value="Find" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <apex:pageBlockTable value="{!eventList}" var="ev">
+                    <apex:column value="{!ev.Subject}"></apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
 </apex:page>
