@@ -1,0 +1,27 @@
+<apex:page controller="EmployeeApplicationWizard">
+    <script>
+    function confirmCancel() {
+        var isCancel = confirm("Are you sure you want to cancel the application");
+        if (isCancel) {
+            return true;}
+        else{
+            return false;
+        }
+    }  
+    </script>
+    <apex:image url="{!URLFOR($Resource.aa, 'logo.jpg')}" width="150" height="150"/>
+    <apex:sectionHeader title="New Employee Application" subtitle="Step 2 of 2"/>
+    <apex:form >
+                <apex:pageBlock Title="Employee Information" mode="edit">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!step1}" value="Previous"/>
+                <apex:commandButton action="{!save}" value="Save"/>
+                <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Contact Information">
+                <apex:inputField id="contactFirstName" value="{!wiz.Phone__c}"/>
+                <apex:inputField id="contactLastName" value="{!wiz.Email__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
