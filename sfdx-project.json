@@ -1,0 +1,11 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "namespace": "",
+  "sfdcLoginUrl": "https://curious-fox-cpp0hz-dev-ed.my.salesforce.com/",
+  "sourceApiVersion": "51.0"
+}

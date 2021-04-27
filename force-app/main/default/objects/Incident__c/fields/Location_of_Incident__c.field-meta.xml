@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location_of_Incident__c</fullName>
+    <externalId>false</externalId>
+    <label>Location of Incident</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Incident_Area__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pool - Diving Well</fullName>
+                <default>false</default>
+                <label>Pool - Diving Well</label>
+            </value>
+            <value>
+                <fullName>Pool - Lap Lanes</fullName>
+                <default>false</default>
+                <label>Pool - Lap Lanes</label>
+            </value>
+            <value>
+                <fullName>Pool - Splash Pad</fullName>
+                <default>false</default>
+                <label>Pool - Splash Pad</label>
+            </value>
+            <value>
+                <fullName>Pool - Catch Area</fullName>
+                <default>false</default>
+                <label>Pool - Catch Area</label>
+            </value>
+            <value>
+                <fullName>Deck - Viewing Gallery Left</fullName>
+                <default>false</default>
+                <label>Deck - Viewing Gallery Left</label>
+            </value>
+            <value>
+                <fullName>Deck - Viewing Gallery Right</fullName>
+                <default>false</default>
+                <label>Deck - Viewing Gallery Right</label>
+            </value>
+            <value>
+                <fullName>Deck - Viewing Gallery Center</fullName>
+                <default>false</default>
+                <label>Deck - Viewing Gallery Center</label>
+            </value>
+            <value>
+                <fullName>Deck - Slides</fullName>
+                <default>false</default>
+                <label>Deck - Slides</label>
+            </value>
+            <value>
+                <fullName>Deck - Entry</fullName>
+                <default>false</default>
+                <label>Deck - Entry</label>
+            </value>
+            <value>
+                <fullName>Indoors - Guard Hut</fullName>
+                <default>false</default>
+                <label>Indoors - Guard Hut</label>
+            </value>
+            <value>
+                <fullName>Indoors - Women&apos;s Locker Room</fullName>
+                <default>false</default>
+                <label>Indoors - Women&apos;s Locker Room</label>
+            </value>
+            <value>
+                <fullName>Indoors - Men&apos;s Locker Room</fullName>
+                <default>false</default>
+                <label>Indoors - Men&apos;s Locker Room</label>
+            </value>
+            <value>
+                <fullName>Indoors - Pump Room</fullName>
+                <default>false</default>
+                <label>Indoors - Pump Room</label>
+            </value>
+            <value>
+                <fullName>Parking Lot - Parking Area</fullName>
+                <default>false</default>
+                <label>Parking Lot - Parking Area</label>
+            </value>
+            <value>
+                <fullName>Parking Lot - Walkway</fullName>
+                <default>false</default>
+                <label>Parking Lot - Walkway</label>
+            </value>
+            <value>
+                <fullName>Parking Lot - Gate</fullName>
+                <default>false</default>
+                <label>Parking Lot - Gate</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Pool</controllingFieldValue>
+            <valueName>Pool - Diving Well</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pool</controllingFieldValue>
+            <valueName>Pool - Lap Lanes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pool</controllingFieldValue>
+            <valueName>Pool - Splash Pad</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pool</controllingFieldValue>
+            <valueName>Pool - Catch Area</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deck</controllingFieldValue>
+            <valueName>Deck - Viewing Gallery Left</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deck</controllingFieldValue>
+            <valueName>Deck - Viewing Gallery Right</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deck</controllingFieldValue>
+            <valueName>Deck - Viewing Gallery Center</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deck</controllingFieldValue>
+            <valueName>Deck - Slides</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deck</controllingFieldValue>
+            <valueName>Deck - Entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Indoors</controllingFieldValue>
+            <valueName>Indoors - Guard Hut</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Indoors</controllingFieldValue>
+            <valueName>Indoors - Women&apos;s Locker Room</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Indoors</controllingFieldValue>
+            <valueName>Indoors - Men&apos;s Locker Room</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Indoors</controllingFieldValue>
+            <valueName>Indoors - Pump Room</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Parking Lot</controllingFieldValue>
+            <valueName>Parking Lot - Parking Area</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Parking Lot</controllingFieldValue>
+            <valueName>Parking Lot - Walkway</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Parking Lot</controllingFieldValue>
+            <valueName>Parking Lot - Gate</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

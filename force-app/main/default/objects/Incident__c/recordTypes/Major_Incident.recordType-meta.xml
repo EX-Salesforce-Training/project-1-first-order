@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Major_Incident</fullName>
+    <active>true</active>
+    <description>This record type is for Major incidents only.</description>
+    <label>Major Incident</label>
+    <picklistValues>
+        <picklist>Care_Provided__c</picklist>
+        <values>
+            <fullName>AED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aspirin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bleeding Control</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CPR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cooled Victim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diabetic Care</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency Oxygen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EpiPen Assistance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>First Aid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gloves%2FPPE Used</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Head%2FNeck%2FSpinal Care</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heated Up Victim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ice Pack</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Insect Sting Relief</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prescription Medication Assistance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shock Control</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Splint</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ventilations Given</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Water Rescue</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EAP_Used__c</picklist>
+        <values>
+            <fullName>Active Shooter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intruder</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Land Emergency</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing Person</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Severe Weather</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Water Rescue</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Incident_Area__c</picklist>
+        <values>
+            <fullName>Deck</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indoors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking Lot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pool</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Location_of_Incident__c</picklist>
+        <values>
+            <fullName>Deck - Entry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deck - Slides</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deck - Viewing Gallery Center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deck - Viewing Gallery Left</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deck - Viewing Gallery Right</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indoors - Guard Hut</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indoors - Men%27s Locker Room</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indoors - Pump Room</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indoors - Women%27s Locker Room</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking Lot - Gate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking Lot - Parking Area</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking Lot - Walkway</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pool - Catch Area</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pool - Diving Well</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pool - Lap Lanes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pool - Splash Pad</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
