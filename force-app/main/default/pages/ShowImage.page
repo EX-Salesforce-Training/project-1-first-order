@@ -1,7 +1,0 @@
-<apex:page >
-    <apex:pageBlock title="Image Test">
-        <apex:includeScript value="{! $Resource.vfimagetest}"/>
-        <apex:image alt="imageTest" url="{!URLFOR($Resource.vfimagetest, 'cats/kitten1.jpg')}"></apex:image>
-    </apex:pageBlock>
-    
-</apex:page>
