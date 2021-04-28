@@ -1,0 +1,22 @@
+<apex:page standardController="Account" recordSetVar="Accs" extensions="HarveyChallengeControllerExtension">
+    <apex:form >
+    	<apex:pageBlock title="Accounts & Related List" >
+            	<apex:pageBlockTable value="{!Accs}" var="a">
+                        <apex:column headerValue="Accounts">
+                            <apex:outputText value="{!a.Name}"/>
+                        </apex:column>
+                        
+                        <apex:column headerValue="Related Name and ID">
+                            <apex:repeat value="{!helpermap[a.ID]}" var="c">
+                                <apex:outputText value="Name: {!c.Name}"/>
+                                <br/>
+                                <apex:outputText value=" ID:( {!c.ID} )"/>
+                                <br/><br/>
+                            </apex:repeat>
+                        </apex:column>
+
+                </apex:pageBlockTable>
+		</apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

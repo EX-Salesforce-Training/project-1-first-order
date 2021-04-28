@@ -1,0 +1,30 @@
+<apex:page lightningStylesheets="true">
+    <apex:slds />
+    <div class="slds-grid slds-box slds-gutters slds-wrap">
+                        
+        <div class="slds-col slds-box slds-size_3-of-5 slds-align_absolute-center" style="background-color: #ff6700; padding:50px 0px;">
+            <span>3</span>
+        </div>
+        <div class="slds-col slds-box slds-size_2-of-5 slds-align_absolute-center" style="background-color: #5679C0; padding:50px 0px;">
+            <span>2</span>
+        </div>
+        <div class="slds-col slds-box slds-size_2-of-5 slds-align_absolute-center" style="background-color: #eaed1c; padding:50px 0px;">
+            <span>2</span>
+        </div>
+        <div class="slds-col slds-box slds-size_3-of-5 slds-align_absolute-center" style="background-color: #1f63a6; padding:50px 0px;">
+            <span>3</span>
+        </div>
+        <div class="slds-col slds-box slds-size_2-of-8 slds-align_absolute-center" style="background-color: #eaed1c; padding:50px 0px;">
+            <span>2</span>
+        </div>
+        <div class="slds-col slds-box slds-size_2-of-8 slds-align_absolute-center" style="background-color: #1f63a6; padding:50px 0px;">
+            <span>2</span>
+        </div>
+        <div class="slds-col slds-box slds-size_2-of-8 slds-align_absolute-center" style="background-color: #eaed1c; padding:50px 0px;">
+            <span>2</span>
+        </div>
+        <div class="slds-col slds-box slds-size_2-of-8 slds-align_absolute-center" style="background-color: #1f63a6; padding:50px 0px;">
+            <span>2</span>
+        </div>
+    </div>
+</apex:page>

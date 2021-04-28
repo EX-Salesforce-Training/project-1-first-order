@@ -146,22 +146,20 @@
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Class</label>
+    <label>Project</label>
     <nameField>
-        <displayFormat>1{00000}</displayFormat>
-        <label>Class Number</label>
-        <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <label>Project Name</label>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>Classes</pluralLabel>
+    <pluralLabel>Projects</pluralLabel>
     <searchLayouts></searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

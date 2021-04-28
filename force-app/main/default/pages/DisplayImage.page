@@ -1,0 +1,11 @@
+<apex:page showHeader="false">
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>New Stuff</h1>
+  
+  <apex:pageBlock title="The Image">
+      <apex:image url="https://developer.salesforce.com/files/salesforce-developer-network-logo.png">
+      </apex:image>
+  </apex:pageBlock>
+  
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>
