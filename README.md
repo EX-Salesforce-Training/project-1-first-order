@@ -3,7 +3,7 @@
 
 ### Visualforce without slds
 ![image](https://user-images.githubusercontent.com/43973882/116772648-5b677f80-aa05-11eb-8bcb-a08187e6a303.png | width=100)
-<img src="https://user-images.githubusercontent.com/43973882/116772648-5b677f80-aa05-11eb-8bcb-a08187e6a303.png" width="500" height="500">
+<img src="https://user-images.githubusercontent.com/43973882/116772648-5b677f80-aa05-11eb-8bcb-a08187e6a303.png" width="800" height="500">
 
 
 ### First version | Page Design
