@@ -12,6 +12,7 @@ public class EmployeeApplicationWizard {
     public PageReference step1() {
         return Page.EmployeeApplicationPage1;
     }
+    
     public PageReference save() {
         PageReference employeeApplicationPage = new PageReference('/home/home.jsp');
         upsert wiz;

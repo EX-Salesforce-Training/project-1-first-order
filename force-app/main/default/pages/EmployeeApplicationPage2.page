@@ -1,62 +1,61 @@
-<apex:page controller="EmployeeApplicationWizard">
-    
-    <apex:slds />
-    <div class="slds-global-header__item">
-        <div class="slds-global-header__logo"></div>
-    </div>
-    <div class="slds-align_absolute-center slds-brand-band slds-brand-band_large" style="font-size: 20px; font-weight: 900;" >        
-        <apex:image url="{!URLFOR($Resource.aa, 'logo.jpg')}" width="150" height="150"/>
-        <br/>
-        <h1>New Employee Application</h1>
-        <br/>
-        <br/>
-        <h1>Step 2 of 3</h1>
-    </div>
-    
-    <apex:form >    
-        <div class="slds-form-element " style="width:80%; border-style: outset; padding: 20px; margin: auto; margin-top:1%;">
-            
-            <span data-slds-strength="2" title="Description of the icon when needed" class="slds-icon-strength">
-                <svg viewBox="0 0 27 7" aria-hidden="true">
-                    <circle r="3.025" cx="3.5" cy="3.5"></circle>
-                    <circle r="3.025" cx="13.5" cy="3.5"></circle>
-                    <circle r="3.025" cx="23.5" cy="3.5"></circle>
-                </svg>
-                <span class="slds-assistive-text">Text alternative when needed</span>
-            </span>
-            
-            <fieldset class="slds-form-element slds-form-element_stacked">
-                <legend class="slds-form-element__legend slds-form-element__label">Background Information</legend>   </fieldset>
-            
-            <div class="slds-form-element slds-form-element_stacked">
-                <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>Are you legally authorized to work in the U.S.?*</label>
-                <div class="slds-form-element__control">
-                    <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Are_you__c}"/>
+<apex:page controller="EmployeeApplicationWizard" showHeader="false" sidebar="false">
+    <style>
+        body {
+        background-image: url("{!URLFOR($Resource.aa, 'logo.jpg')}") !important;
+        background-position: center; !important;
+        background-repeat: repeat !important;
+        
+        }     
+    </style>
+    <apex:slds >       
+        <apex:form >    
+            <div class="slds-form-element " style="width:50%; border-style: outset; padding: 20px; margin: 300px; margin-top:20%; background-color: white;">
+                
+                <span data-slds-strength="2" title="Description of the icon when needed" class="slds-icon-strength">
+                    <svg viewBox="0 0 27 7" aria-hidden="true">
+                        <circle r="3.025" cx="3.5" cy="3.5"></circle>
+                        <circle r="3.025" cx="13.5" cy="3.5"></circle>
+                        <circle r="3.025" cx="23.5" cy="3.5"></circle>
+                    </svg>
+                    
+                </span>
+                <fieldset class="slds-form-element slds-form-element_stacked">
+                    <legend class="slds-align_absolute-center slds-form-element__label" style="font-weight: 1000; font-size: 150%;">New Employee Application</legend>   </fieldset>
+                <fieldset class="slds-form-element slds-form-element_stacked">
+                    <legend class="slds-form-element__legend slds-form-element__label">Step 2 of 3</legend>   </fieldset>
+                <fieldset class="slds-form-element slds-form-element_stacked">
+                    <legend class="slds-form-element__legend slds-form-element__label">Background Information</legend>   </fieldset>
+                
+                <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label"> Are you legally authorized to work in the U.S.?*</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Are_you__c}"/>
+                    </div>
+                </div> 
+                
+                <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label"> Do you have any swim Instructor Certification ?</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Certification__c}"/>
+                    </div>
+                </div> 
+                
+                <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label"> How many years do you have experience as swimming instructors ?</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Years_Experience__c}"/>
+                    </div>
+                </div> 
+                
+                <div class="slds-docked-form-footer">
+                    <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step1}" value="Previous"/>
+                    <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step3}" value="Next"/>
+                    <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
                 </div>
+                
             </div> 
-            
-            <div class="slds-form-element slds-form-element_stacked">
-                <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>Do you have any swim Instructor Certification ?</label>
-                <div class="slds-form-element__control">
-                    <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Certification__c}"/>
-                </div>
-            </div> 
-            
-            <div class="slds-form-element slds-form-element_stacked">
-                <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>How many years do you have experience as swimming instructors ?</label>
-                <div class="slds-form-element__control">
-                    <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Years_Experience__c}"/>
-                </div>
-            </div> 
-            
-            <div class="slds-docked-form-footer">
-                <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step1}" value="Previous"/>
-                <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step3}" value="Next"/>
-                <apex:commandButton styleClass="slds-button slds-button_brand" action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
-            </div>
-            
-        </div> 
-    </apex:form>
+        </apex:form>
+    </apex:slds>
     <script>
     function confirmCancel() {
         var isCancel = confirm("Are you sure you want to cancel the application");
