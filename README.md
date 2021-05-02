@@ -13,11 +13,10 @@
 <img src="https://user-images.githubusercontent.com/43973882/116771685-2b6aad00-aa02-11eb-863f-2977a9cbaac4.PNG" width="800" height="500">
 
 ### Add google reCaptcha to prevent bots before submit
-![image](https://user-images.githubusercontent.com/43973882/116820818-c1e6bd80-ab2b-11eb-907e-b6ec8397863f.png)
-![image](https://user-images.githubusercontent.com/43973882/116820823-c7dc9e80-ab2b-11eb-902f-9d9261ea6fbf.png)
+<img src="https://user-images.githubusercontent.com/43973882/116820818-c1e6bd80-ab2b-11eb-907e-b6ec8397863f.png" width="800" height="500">
+<img src="https://user-images.githubusercontent.com/43973882/116820823-c7dc9e80-ab2b-11eb-902f-9d9261ea6fbf.png" width="800" height="500">
 
 ### Test on the Controller
-![image](https://user-images.githubusercontent.com/43973882/116772255-800e2800-aa02-11eb-8362-c296d4a2e319.png ")
 <img src="https://user-images.githubusercontent.com/43973882/116772255-800e2800-aa02-11eb-8362-c296d4a2e319.png" width="800" height="500">
 
 
