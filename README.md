@@ -17,6 +17,6 @@
 <img src="https://user-images.githubusercontent.com/43973882/116820823-c7dc9e80-ab2b-11eb-902f-9d9261ea6fbf.png" width="800" height="500">
 
 ### Test on the Controller
-<img src="https://user-images.githubusercontent.com/43973882/116772255-800e2800-aa02-11eb-8362-c296d4a2e319.png" width="800" height="500">
+<img src="https://user-images.githubusercontent.com/43973882/116772255-800e2800-aa02-11eb-8362-c296d4a2e319.png">
 
 
