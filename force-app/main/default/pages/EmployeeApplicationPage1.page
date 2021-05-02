@@ -1,11 +1,14 @@
 <apex:page controller="EmployeeApplicationWizard" showHeader="false" sidebar="false">
     <style>
+        
+
         body {
         background-image: url("{!URLFOR($Resource.aa, 'logo.jpg')}") !important;
         background-position: center; !important;
         background-repeat: repeat !important;
+
+        }
         
-        }     
     </style>
     <apex:slds >       
         <apex:form >    

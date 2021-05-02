@@ -1,20 +1,18 @@
-# Employee Application Page
-## 3 Pages total
+# Salesforce DX Project: Next Steps
 
-### Visualforce without slds
-<img src="https://user-images.githubusercontent.com/43973882/116772648-5b677f80-aa05-11eb-8bcb-a08187e6a303.png" width="800" height="500">
+Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
+## How Do You Plan to Deploy Your Changes?
 
-### First version | Page Design
-<img src="https://user-images.githubusercontent.com/43973882/116498808-7d270200-a85f-11eb-88b1-a2d24b08dfc7.PNG" width="800" height="500">
+Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
 
+## Configure Your Salesforce DX Project
 
+The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
 
-### Second version | Page design
-<img src="https://user-images.githubusercontent.com/43973882/116771685-2b6aad00-aa02-11eb-863f-2977a9cbaac4.PNG" width="800" height="500">
+## Read All About It
 
-
-
-
-### Test on the Controller
-![image](https://user-images.githubusercontent.com/43973882/116772255-800e2800-aa02-11eb-8362-c296d4a2e319.png)
+- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
+- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
+- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
+- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)

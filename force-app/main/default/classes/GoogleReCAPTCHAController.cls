@@ -1,34 +1,10 @@
-public class EmployeeApplicationWizard {
-    public Employee_Application__c wiz {get;set;}
-    public EmployeeApplicationWizard(){
-        wiz = new Employee_Application__c();
-        this.publicKey = '6LcXM8IaAAAAAJKpA9e99o_Un7Pnr9b2k-AHA6j2';//Google Site Key or Public Key
-        this.verified = false;
-    }
-    public PageReference step3(){
-        return Page.EmployeeApplicationPage3;
-    }
-    public PageReference step2() {
-        return Page.EmployeeApplicationPage2;
-    }
-    public PageReference step1() {
-        return Page.EmployeeApplicationPage1;
-    }
-    
-    public PageReference save() {
-        PageReference employeeApplicationPage = new PageReference('/home/home.jsp');
-        upsert wiz;
-        employeeApplicationPage.setRedirect(true);
-        return employeeApplicationPage; 
-    }
-    public PageReference cancel() {
-        PageReference employeeApplicationPage = new PageReference('/home/home.jsp');
-        employeeApplicationPage.setRedirect(true);
-        return employeeApplicationPage; 
-    }
-    
-    
-    
+/*
+@Author : Biswajeet Samal
+@CreatedDate : 30th JUL 2020
+@Description : Google ReCAPTCHA Controller
+*/
+public class GoogleReCAPTCHAController {
+     
     public Boolean verified { get; private set; }
     public String response  { 
         get {
@@ -38,7 +14,7 @@ public class EmployeeApplicationWizard {
     public String firstName{get;set;}
     public String lastName{get;set;}
     public String publicKey {get;set;}
-    
+     
     private String remoteHost{
         get {
             String ret = '127.0.0.1';
@@ -51,11 +27,17 @@ public class EmployeeApplicationWizard {
             return ret;
         }
     }
-    
+     
     //Google Secret Key
     private static String secretKey = '6LcXM8IaAAAAAG-FJPdwqrtSPN291e5y72RhSRcJ';
     private static String baseUrl = 'https://www.google.com/recaptcha/api/siteverify';
-    
+     
+    //Constructor
+    public GoogleReCAPTCHAController(){
+        this.publicKey = '6LcXM8IaAAAAAJKpA9e99o_Un7Pnr9b2k-AHA6j2';//Google Site Key or Public Key
+        this.verified = false;
+    }
+     
     public PageReference submit(){
         if (response == null ){
             //Google recaptcha empty response
@@ -81,7 +63,7 @@ public class EmployeeApplicationWizard {
             return null;
         }
     }
-    
+     
     //Get Google reCAPTCHA Service Response 
     private static HttpResponse getGoogleReCAPTCHAResponse(string requestURL, string body){
         HttpResponse response = null;
