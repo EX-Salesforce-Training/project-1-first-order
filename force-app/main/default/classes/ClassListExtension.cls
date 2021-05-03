@@ -40,13 +40,16 @@ public class ClassListExtension {
     
     // CONSTRUCTOR
     public ClassListExtension(ApexPages.StandardSetController stc){
+        
         // getting all the class for now
         controller = stc;
         controller = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id, Name,
                                                    Class_Price__c, Class_Time__c, Class_Type__c, Day__c, Start_Date__c, Adding__c,
                                                    Instructor__r.Name, Instructor__r.Email, Instructor__r.Phone, Instructor__r.SmallPhotoUrl 
                                                    FROM Class__c]));
-        controller.setPageSize(20);
+        
+        // set controller to a specific size, it default to 20
+        //controller.setPageSize(20);
         
         // use the filter to get rid of class that is not adding.
        	//controller.setFilterId('00B5Y00000IpQGzUAN');
@@ -85,12 +88,12 @@ public class ClassListExtension {
     }   
 
     // get contactToAdd, but only return names that have yet to add the class
-    public List<AddClassWrapper> getContactToAdd(){
+    public List<AddClassWrapper> GetContactToAdd(){
         List<AddClassWrapper> returnList = new List<AddClassWrapper>();
+        
         // check if they already in the class
         for(AddClassWrapper a: contactToAdd){
             boolean alreadyInClass = false;
-            
             for(Class_Roster__c c: classAndAttendee.get(a.con.id)){
                 if(c.Class__r.Id == theClass){
                     alreadyInClass = true;
@@ -106,28 +109,31 @@ public class ClassListExtension {
     }
     
     // account info popup screen control.
-    public void closeAccountInfo(){
+    public void CloseAccountInfo(){
         accInfoPopup = false;
     }
-    public void showAccountInfo(){
+    public void ShowAccountInfo(){
         accInfoPopup = true;
     }
     
     // class confirmation popup screen control.
-    public void closeConfirm(){
+    public void CloseConfirm(){
         classAddPopup = false;
+        
         // set top box back to false
         topBox = false;
+        
         // reset the checkboxes
         for(addClassWrapper c: contactToAdd){
             c.selected = false;
         }
     }
-    public void showConfirm(){
+    public void ShowConfirm(){
         classAddPopup = true;
     }
     
-    public void checkOrUncheckAll(){
+    
+    public void CheckOrUncheckAll(){
         for(AddClassWrapper c: contactToAdd){
             c.selected = topBox;
         }
@@ -145,22 +151,24 @@ public class ClassListExtension {
         }
     }
     // overriding previous and next
- 	public void previous() {
+ 	public void Previous() {
  		controller.previous();
         classListUpdated = controller.getRecords();
  	}
- 	public void next() {
+ 	public void Next() {
  		controller.next();
         classListUpdated = controller.getRecords();
  	}
     
     // Won't be usign the normal save, will use saveList instead.
     // checking if any contact was selected and creating new records in class roster
-    public PageReference saveList(){
+    public PageReference SaveList(){
         List<Class_Roster__c> classAdd = new List<Class_Roster__c>();
         Integer count = 0;
+        
         // populate list with new class roster for those contact that was selected.
         for(addClassWrapper c: contactToAdd){
+            
             // if the checkbox is selected then create new record in the Class Roster
             if(c.selected == true){
                 Class_Roster__c temp = new Class_Roster__c(Contact__c=c.con.id, Class__c=theClass);
@@ -169,6 +177,7 @@ public class ClassListExtension {
             }
         }
         
+        // check if the user select any contact before clicking save.
         if(count == 0){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING,'No contact was selected.'));
         	return null;
