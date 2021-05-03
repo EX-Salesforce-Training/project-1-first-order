@@ -1,0 +1,21 @@
+<!-- Page use to show confirmation that the user have added the class -->
+<!-- This page is use to solve the problem with refreshing the page after adding a class cause resubmit -->
+
+<apex:page controller="ClassAddConfimationPageController" title="Confirmation Page">
+    <apex:form >
+        
+        <!-- MAIN CONTENT -->
+        <apex:pageBlock title="Class Add Confirmation Page" >
+            <div class="slds-modal__container">
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!goBackToClassList}" value="Go Back"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection >
+                    <apex:outputText >You have added the class.</apex:outputText>
+                </apex:pageBlockSection>            
+            </div>
+        </apex:pageBlock>
+        <!-- /MAIN CONTENT -->
+        
+    </apex:form>
+</apex:page>

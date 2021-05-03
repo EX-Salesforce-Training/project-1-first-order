@@ -17,7 +17,8 @@
         <name>ApexComponent</name>
     </types>
     <types>
-        <members>AccountList</members>
+        <members>ClassList</members>
+        <members>ClassAddConfirmationPage</members>
         <name>ApexPage</name>
     </types>
     <types>
