@@ -8,6 +8,8 @@
     </types>
     <types>
         <members>ClassListExtension</members>
+        <members>ClassAddConfimationPageController</members>
+        <members>ClassListTester</members>
         <name>ApexClass</name>
     </types>
     <types>

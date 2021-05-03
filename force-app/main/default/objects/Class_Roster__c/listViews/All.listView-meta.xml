@@ -4,6 +4,7 @@
     <columns>NAME</columns>
     <columns>Class__c</columns>
     <columns>Contact__c</columns>
+    <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
