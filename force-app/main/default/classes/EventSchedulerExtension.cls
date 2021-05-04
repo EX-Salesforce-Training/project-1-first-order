@@ -29,15 +29,15 @@ public class EventSchedulerExtension {
         catch(DMLException e) {
             ApexPages.addMessages(e);
         }
-        
-        //Setup for the next event to be entered
-        newEvent = new Event();
-        newEvent.IsPrivate = true;
     }
     
     //Closes the success popup
     public void Close() {
         successPopup = false;
+        
+        //Setup for the next event to be entered
+        newEvent = new Event();
+        newEvent.IsPrivate = true;
     }
     
     //Finds relevant events in the database
@@ -58,6 +58,18 @@ public class EventSchedulerExtension {
         DateTime newStart = newEvent.StartDateTime;
         DateTime newEnd = newEvent.EndDateTime;
         
+        //Enforce all events to have a start time
+        if (newStart == null) {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Event must have a start date.'));
+            return false;
+        }
+        
+        //Only all day events can be missing an end time
+        if (newEnd == null && !newEvent.IsAllDayEvent) {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Partial day events must have an end.'));
+            return false;
+        }
+        
         //An all day event should have an end date equal to the start date
         if (newEvent.IsAllDayEvent) {
             newEvent.EndDateTime = newEvent.StartDateTime;
@@ -75,18 +87,6 @@ public class EventSchedulerExtension {
         if (newStart.day() < eventCutoff.day()) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Event must be scheduled a week in advance.'));
             return false;            
-        }
-        
-        //Enforce all events to have a start time
-        if (newStart == null) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Event must have a start date.'));
-            return false;
-        }
-        
-        //Only all day events can be missing an end time
-        if (newEnd == null && !newEvent.IsAllDayEvent) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Partial day events must have an end.'));
-            return false;
         }
         
         //Enforce events only occuring for 1 day
@@ -107,7 +107,7 @@ public class EventSchedulerExtension {
         }
         
         for (Event e : allEvents) {
-            
+            System.debug(e.EndDateTime.Day());
             //If there's an all day event on the new event day or an event on a new all-day event, throw the errors
             if (e.IsAllDayEvent && (e.StartDateTime.Day() == newStart.day() || e.StartDateTime.Day() == newEnd.day())) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Event conflicts with an all-day event, choose another day.'));
