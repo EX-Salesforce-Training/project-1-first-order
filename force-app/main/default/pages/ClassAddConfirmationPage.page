@@ -1,18 +1,16 @@
 <!-- Page use to show confirmation that the user have added the class -->
 <!-- This page is use to solve the problem with refreshing the page after adding a class cause resubmit -->
 
-<apex:page controller="ClassAddConfimationPageController" title="Confirmation Page">
-    <apex:slds />
-    <apex:stylesheet value="{!$Resource.Styles}" />
+<apex:page controller="ClassAddConfimationPageController" title="Confirmation Page" lightningStyleSheets="true">
+    
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>Class Added Confirmation Page</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <apex:stylesheet value="{!$Resource.Styles}" />
+        <apex:stylesheet value="{!URLFOR($Asset.SLDS, '/')}"/>
     </head>
     
     <body id = "body" class="slds-scope" style="background-color: blue;">
         
+        <apex:slds />
         <apex:form >
             
             <div class = "title-holder">

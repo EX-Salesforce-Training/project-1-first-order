@@ -1,10 +1,10 @@
 <!-- Page to display all classes a user can add -->
 
-<apex:page standardStylesheets="false" standardController="Class__c" recordSetVar="classes" extensions="ClassListExtension" title="Class Listing">
-    <apex:slds />
-    <apex:stylesheet value="{!$Resource.Styles}" />
+<apex:page standardStylesheets="false" standardController="Class__c" recordSetVar="classes" extensions="ClassListExtension" title="Class Listing" lightningStyleSheets="true">
+    
     <html>
         <head>
+    		<apex:stylesheet value="{!$Resource.Styles}" />
             <style>
                 .inner-popup {
                 background-color: lightgrey;
@@ -23,6 +23,7 @@
         </head>
         <body id = "body" class="slds-scope" style="background-color: blue;">
             
+            <apex:slds />
             <div id = "form">
                 <apex:form >
                     
