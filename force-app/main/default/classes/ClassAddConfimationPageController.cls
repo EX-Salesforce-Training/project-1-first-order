@@ -12,4 +12,5 @@ public class ClassAddConfimationPageController {
         return pageRef;
     }
     
+    // might need another function here to route back to homepage or something.
 }

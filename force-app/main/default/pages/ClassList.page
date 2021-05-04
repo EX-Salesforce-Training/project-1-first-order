@@ -1,16 +1,10 @@
 <!-- Page to display all classes a user can add -->
 
-<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" 
-           standardController="Class__c" recordSetVar="classes" extensions="ClassListExtension" title="Class Listing">
+<apex:page standardStylesheets="false" standardController="Class__c" recordSetVar="classes" extensions="ClassListExtension" title="Class Listing">
     <apex:slds />
     <apex:stylesheet value="{!$Resource.Styles}" />
     <html>
         <head>
-            <meta charset="utf-8" />
-            <meta http-equiv="x-ua-compatible" content="ie=edge" />
-            <title>Class Listing</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            
             <style>
                 .inner-popup {
                 background-color: lightgrey;
@@ -88,7 +82,6 @@
                     <!-- MAIN CONTENT -->
                     <!-- where the list of class resides -->
                     <apex:pageBlock id="ClassList">
-                        <apex:pageBlockSection >
                             <apex:pageBlockTable value="{!classListUpdated}" var="c" styleClass="slds-table slds-table_cell-buffer slds-table_bordered slds-p-left_xxx-small">
                                 <apex:column headerValue="Instructor">
                                     <div class="slds-tile slds-media slds-truncate"> 
@@ -150,7 +143,6 @@
                                     </apex:commandButton>
                                 </apex:column>
                             </apex:pageBlockTable>
-                        </apex:pageBlockSection>
                     </apex:pageBlock>
                     <!-- /MAIN CONTENT -->  
                     
