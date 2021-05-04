@@ -1,14 +1,122 @@
 <apex:page standardController="Event" recordSetVar="events" extensions="EventSchedulerExtension">
-    <apex:form >
-        <apex:pageBlock >
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!FindEvents}" value="Find" />
-            </apex:pageBlockButtons>
-            <apex:pageBlockSection >
-                <apex:pageBlockTable value="{!eventList}" var="ev">
-                    <apex:column value="{!ev.Subject}"></apex:column>
-                </apex:pageBlockTable>
-            </apex:pageBlockSection>
-        </apex:pageBlock>
-    </apex:form>
+    <apex:slds />
+    <apex:stylesheet value="{!$Resource.Styles}" />
+    <html>
+        <head>
+            <title>Event Scheduler</title>
+        </head>
+        
+        <body id = "body">
+            <div id = "form">
+                <apex:form >
+                    <div class = "title-holder">
+                        <h1 class = "slds-text-heading_large slds-align_absolute-center">Aquatic Alchemy Event Scheduler</h1>
+                    </div>
+                    
+                    <!-- Begin event table -->
+                    <apex:pageBlock >
+                        
+                        <!-- Begin Block title/icon -->
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact">
+                                        <use href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#event')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body">
+                                    <p class="slds-text-title_caps slds-line-height_reset">Events</p>
+                                    <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">Upcoming Events</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Block title/icon -->
+                        
+                        <apex:pageBlockButtons >
+                            <span>Filter Date: </span>
+                            <apex:inputField styleClass="slds-form-element__label"
+                                             value="{!filter.ActivityDate}"></apex:inputField>
+                            <br/>
+                            <apex:commandButton styleclass="slds-align_absolute-center slds-button slds-button_brand "
+                                                action="{!FindEvents}" value="Find" reRender="eventView"/>
+                        </apex:pageBlockButtons>
+                        
+                        <apex:pageBlockSection id="eventView">
+                            <apex:pageBlockTable value="{!eventList}" var="ev">
+                                <apex:column value="{!ev.Subject}"></apex:column>
+                                <apex:column value="{!ev.StartDateTime}"></apex:column>
+                                <apex:column value="{!ev.EndDateTime}"></apex:column>
+                                <apex:column value="{!ev.IsAllDayEvent}"></apex:column>
+                            </apex:pageBlockTable>
+                            
+                            <!-- Begin hours of operation section -->
+                            <div id = "hours-op">
+                                <h2 class = "slds-text-heading_medium">Normal Hours of Operation:</h2>
+                                <br />
+                                <span>10:00am - 8:00pm</span>
+                            </div>
+                            <!-- End hours of operation section -->
+                            
+                        </apex:pageBlockSection>
+                    </apex:pageBlock>
+                    <!-- End Event table -->
+                    
+                    <!-- Start event input section -->
+                    <apex:pageBlock >
+                        
+                        <!-- Start Title/Icon -->
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact">
+                                        <use href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#event')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body">
+                                    <p class="slds-text-title_caps slds-line-height_reset">Events</p>
+                                    <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">Schedule An Event</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Title/Icon -->
+                        
+                        <apex:pageBlockSection id="eventInput">
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.Subject}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.IsAllDayEvent}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.StartDateTime}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.EndDateTime}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.Description}"></apex:inputField>
+                            <apex:pageMessages ></apex:pageMessages>
+                        </apex:pageBlockSection>
+                        <apex:commandButton styleClass="slds-align_absolute-center slds-button slds-button_brand"
+                                            action="{!Save}" value="Save" reRender="eventInput,confirm-popup"/>
+                    </apex:pageBlock>
+                    <!-- End event input section -->
+                    
+                    <!-- Start success popup -->
+                    <apex:outputPanel id="confirm-popup">
+                        <apex:outputPanel styleclass="outer-popup" rendered="{!successPopup}">
+                            <apex:outputPanel styleclass="inner-popup" layout="block">
+                                <apex:pageBlock title="Success!">
+                                    <p>Your event has been submitted, please wait for manager approval.</p>
+                                    <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">Event Details</h1>
+                                    <apex:pageBlockTable value="{!newEvent}" var="ev">
+                                        <apex:column value="{!ev.Subject}"></apex:column>
+                                        <apex:column value="{!ev.StartDateTime}"></apex:column>
+                                        <apex:column value="{!ev.EndDateTime}"></apex:column>
+                                        <apex:column value="{!ev.IsAllDayEvent}"></apex:column>
+                                    </apex:pageBlockTable>
+                                    <br />
+                                    <apex:commandButton styleClass="slds-align_absolute-center slds-button slds-button_brand"
+                                                        action="{!Close}" value="Close" reRender="confirm-popup,eventInput"/>
+                                </apex:pageBlock>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <!-- End success popup -->
+                    
+                </apex:form>
+            </div>
+        </body>
+    </html>
 </apex:page>
