@@ -132,7 +132,7 @@ public class ClassListExtension {
         classAddPopup = true;
     }
     
-    
+    // use to update all checkbox when top most checkbox are checked or unchecked
     public void CheckOrUncheckAll(){
         for(AddClassWrapper c: contactToAdd){
             c.selected = topBox;

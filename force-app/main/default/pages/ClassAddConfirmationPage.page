@@ -2,20 +2,43 @@
 <!-- This page is use to solve the problem with refreshing the page after adding a class cause resubmit -->
 
 <apex:page controller="ClassAddConfimationPageController" title="Confirmation Page">
-    <apex:form >
+    <apex:slds />
+    <apex:stylesheet value="{!$Resource.Styles}" />
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>Class Added Confirmation Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    
+    <body id = "body" class="slds-scope" style="background-color: blue;">
         
-        <!-- MAIN CONTENT -->
-        <apex:pageBlock title="Class Add Confirmation Page" >
-            <div class="slds-modal__container">
-                <apex:pageBlockButtons >
-                    <apex:commandButton action="{!goBackToClassList}" value="Go Back"/>
-                </apex:pageBlockButtons>
-                <apex:pageBlockSection >
-                    <apex:outputText >You have added the class.</apex:outputText>
-                </apex:pageBlockSection>            
+        <apex:form >
+            
+            <div class = "title-holder">
+                <h1 class = "slds-text-heading_large slds-align_absolute-center">Class Added Confirmation Page</h1>
             </div>
-        </apex:pageBlock>
-        <!-- /MAIN CONTENT -->
-        
-    </apex:form>
+            
+            <!-- MAIN CONTENT -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Welcome to Aquatic!</h2>
+                        <p class="slds-m-top_x-small">We appreciate you!</p>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>Class information will be given through email.</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!goBackToClassList}" value="Back"/>
+                        <apex:commandButton styleClass="slds-button slds-button_Brand" action="{!goBackToClassList}" value="Home"/>
+                    </footer>
+                </div>
+            </section>
+            <!-- /MAIN CONTENT -->
+            
+            
+        </apex:form>
+    </body>
 </apex:page>

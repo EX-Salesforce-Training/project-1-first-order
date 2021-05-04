@@ -2,25 +2,44 @@
 
 <apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" 
            standardController="Class__c" recordSetVar="classes" extensions="ClassListExtension" title="Class Listing">
-    
+    <apex:slds />
+    <apex:stylesheet value="{!$Resource.Styles}" />
     <html>
         <head>
             <meta charset="utf-8" />
             <meta http-equiv="x-ua-compatible" content="ie=edge" />
             <title>Class Listing</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <apex:slds />
-        </head>
-        
-        <body class="slds-scope">
             
-            <div>
+            <style>
+                .inner-popup {
+                background-color: lightgrey;
+                border-radius: 10px;
+                margin: 10% 25% 25% 25%;
+                padding: 5px;
+                box-shadow: 0px 3px 7px rgba(1, 1, 1, 5);
+                background: #fff;
+                max-height: 50%;
+                overflow-y: auto;
+                }
+                .outer-popup{
+                z-index:4;
+                }
+            </style>
+        </head>
+        <body id = "body" class="slds-scope" style="background-color: blue;">
+            
+            <div id = "form">
                 <apex:form >
+                    
+                    <div class = "title-holder">
+                        <h1 class = "slds-text-heading_large slds-align_absolute-center">Class Listing</h1>
+                    </div>
                     
                     <!-- HEADER -->
                     <!-- have previous and next button to traverse the record list -->
                     <!-- also have the myclass button, display contacts and the class each contact is attending -->
-                    <div class="slds-page-header" style="z-index:+1; position:fixed; width:1890px; top:0; margin-right: 40px;">
+                    <div class="slds-page-header" style=" z-index:1; position: -webkit-sticky; position: sticky; top: 0;">
                         
                         <!-- LAYOUT GRID -->
                         <div class="slds-grid">
@@ -62,87 +81,84 @@
                         
                         <!-- /LAYOUT GRID -->
                     </div>
-                    
                     <!-- /HEADER -->
+                    
+                    <br/>
                     
                     <!-- MAIN CONTENT -->
                     <!-- where the list of class resides -->
                     <apex:pageBlock id="ClassList">
                         <apex:pageBlockSection >
-                            <apex:pageBlockSectionItem >
-                                <apex:outputPanel >
-                                    <apex:pageBlockTable value="{!classListUpdated}" var="c" styleClass="slds-table slds-table_cell-buffer slds-table_bordered slds-p-left_xxx-small"
-                                                         style="margin-top: 120px; margin-bottom: 75px;">
-                                        <apex:column headerValue="Instructor">
-                                            <div class="slds-tile slds-media slds-truncate"> 
-                                                <div class="slds-tile slds-media">
-                                                    <div class="slds-media__figure">
-                                                        <img class="slds-avatar slds-avatar_large" src="{!c.Instructor__r.SmallPhotoUrl}" alt="photo" />
-                                                    </div>
-                                                    <div class="slds-media__body">
-                                                        <ul class="slds-has-dividers_bottom">
-                                                            <li class="slds-item"><apex:outputText value="{!c.Instructor__r.Name}"> </apex:outputText></li>
-                                                            <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Email), 'None', c.Instructor__r.Email)}"> </apex:outputText></li>
-                                                            <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Phone), 'None', c.Instructor__r.Phone)}"> </apex:outputText></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                            <apex:pageBlockTable value="{!classListUpdated}" var="c" styleClass="slds-table slds-table_cell-buffer slds-table_bordered slds-p-left_xxx-small">
+                                <apex:column headerValue="Instructor">
+                                    <div class="slds-tile slds-media slds-truncate"> 
+                                        <div class="slds-tile slds-media">
+                                            <div class="slds-media__figure">
+                                                <img class="slds-avatar slds-avatar_large" src="{!c.Instructor__r.SmallPhotoUrl}" alt="photo" />
                                             </div>
-                                            <!--maybe some image here -->
-                                        </apex:column>
-                                        <apex:column headerValue="Adding">
-                                            <div class="slds-tile slds-truncate">
-                                                <apex:outputField value="{! c.Adding__c}"/>                 
+                                            <div class="slds-media__body">
+                                                <ul class="slds-has-dividers_bottom">
+                                                    <li class="slds-item"><apex:outputText value="{!c.Instructor__r.Name}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Email), 'None', c.Instructor__r.Email)}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Phone), 'None', c.Instructor__r.Phone)}"> </apex:outputText></li>
+                                                </ul>
                                             </div>
-                                        </apex:column>
-                                        <apex:column headerValue="Class Number">
-                                            <div class="slds-tile slds-truncate">
-                                                <apex:outputText value="{!c.Name}"></apex:outputText>
-                                            </div>
-                                        </apex:column>
-                                        <apex:column headerValue="Class Type">
-                                            <div class="slds-tile slds-truncate">
-                                                <apex:outputText value="{!c.Class_Type__c}"></apex:outputText>
-                                            </div>
-                                        </apex:column>
-                                        <apex:column headerValue="Class Time">
-                                            <div class="slds-tile slds-truncate">
-                                                <apex:outputField value="{! c.Class_Time__c}"/>           
-                                            </div>
-                                        </apex:column>
-                                        <apex:column headerValue="Day">
-                                            <div class="slds-tile slds-truncate">
-                                                <apex:outputText value="{!c.Day__c}"></apex:outputText>
-                                            </div>
-                                        </apex:column>
-                                        <apex:column headerValue="Start Date">
-                                            <div class="slds-tile slds-truncate">
-                                                <apex:outputText value="{0,date, yyyy/MM/dd, hh:mm}">
-                                                    <apex:param value="{!c.Start_Date__c}"/>
-                                                </apex:outputText>
-                                            </div>
-                                        </apex:column>
-                                        <apex:column headerValue="Class Price">
-                                            <div class="slds-tile slds-truncate">
-                                                <apex:outputText value="{!c.Class_Price__c}"></apex:outputText>
-                                            </div>
-                                        </apex:column>
-                                        <apex:column >
-                                            <apex:commandButton styleClass="slds-button slds-button_neutral" style="float:right;" value="Add Class" action="{!showConfirm}" rerender="ConfirmationPopup">
-                                                <apex:param name="chosenClassID" value="{!c.ID}" assignTo="{!theClass}"/>
-                                            </apex:commandButton>
-                                        </apex:column>
-                                    </apex:pageBlockTable>
-                                </apex:outputPanel>
-                            </apex:pageBlockSectionItem>
+                                        </div>
+                                    </div>
+                                    <!--maybe some image here -->
+                                </apex:column>
+                                <apex:column headerValue="Adding">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputField value="{! c.Adding__c}"/>                 
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Number">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Name}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Type">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Class_Type__c}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Time">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputField value="{! c.Class_Time__c}"/>           
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Day">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Day__c}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Start Date">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{0,date, yyyy/MM/dd, hh:mm}">
+                                            <apex:param value="{!c.Start_Date__c}"/>
+                                        </apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Price">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Class_Price__c}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column >
+                                    <apex:commandButton styleClass="slds-button slds-button_neutral" style="float:right;" value="Add Class" action="{!showConfirm}" rerender="ConfirmationPopup">
+                                        <apex:param name="chosenClassID" value="{!c.ID}" assignTo="{!theClass}"/>
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
                         </apex:pageBlockSection>
                     </apex:pageBlock>
                     <!-- /MAIN CONTENT -->  
+                    
                     <br/>
                     
                     <!-- FOOTER -->
                     <!-- doesn't really do much, just have the next and previous button -->
-                    <footer class="slds-card" style="width:1890px; position:fixed; bottom: 0px;">
+                    <footer class="slds-card">
                         <div class="slds-p-around_large">
                             <div class="slds-grid slds-gutters slds-grid_align-center">
                                 <div class="slds-col slds-size_1-of-3">
@@ -166,74 +182,88 @@
                     <!-- POPUP -->
                     <!-- show the current contacts on the account and what class they are taking. -->
                     <apex:outputPanel id="AccountInfoPopup">
-                        <apex:outputPanel styleClass="slds-backdrop slds-backdrop_open" layout="block" rendered="{!accInfoPopup}">
-                            <apex:outputPanel layout="block" rendered="{!accInfoPopup}" 
-                                              style="position: fixed; z-index: 100; top: 50%; left: 50%; width:700px; height: 800px; 
-                                                     margin-left: -350px; margin-top: -400px; background-color: white; border-width: 5px; border-color: black; border-style:solid;">
+                        <apex:outputPanel styleClass="outer-popup" layout="block" rendered="{!accInfoPopup}">
+                            <apex:outputPanel styleClass="inner-popup" layout="block" rendered="{!accInfoPopup}">
                                 
-                                <apex:commandButton action="{!closeAccountInfo}" value="X" rerender="AccountInfoPopup" style="float: right;"/>
-                                <apex:pageBlock title="Account Information">
-                                    <apex:outputText value="Primary User: {! primaryContact.Name}"></apex:outputText>
-                                    <br/><br/>
-                                    <apex:outputPanel layout="block" style="overflow:auto; width: 680px; height: 700px; margin-left: 5px;">
-                                        <apex:repeat value="{! relatedContacts}" var="cid">
-                                            <apex:outputText value="{!cid.Name}"></apex:outputText>
-                                            <br/>
-                                            <apex:repeat value="{! classAndAttendee[cid.id]}" var="cad">
-                                                <ul style="margin-left: 5px;">
-                                                    <li><apex:outputText value="   Class Name: {!cad.Class__r.Name}"/></li>
-                                                    <li><apex:outputText value="   Class Day: {!cad.Class__r.Day__c}"/></li>
-                                                    <li><apex:outputText value="   Class Time: {!cad.Class__r.Class_Time__c}"/></li>
-                                                </ul>
+                                <!-- header -->
+                                <div class="slds-page-header" style="position: -webkit-sticky; position: sticky; top: 0; background-color: #2f78de;">
+                                    <apex:outputText value="Primary User: {! primaryContact.Name}"
+                                                     style="text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; font-weight:bold; font-size:20px;"/>
+                                    <apex:commandButton action="{!closeAccountInfo}" value="X" rerender="AccountInfoPopup" style="float: right;"/>
+                                    <div class="slds-grid slds-gutters slds-grid_align-center slds-border" style="font-weight: bold; border-top: 2px solid #163663; border-bottom: 2px solid #163663;">
+                                        <div class="slds-col slds-size_1-of-4">name</div>
+                                        <div class="slds-col slds-size_1-of-4">class name</div>
+                                        <div class="slds-col slds-size_1-of-4">class day</div>
+                                        <div class="slds-col slds-size_1-of-4">class time</div>
+                                    </div>
+                                </div>
+                                <!-- /header -->
+                                
+                                <!-- content -->
+                                <div>
+                                    <br/>
+                                    <apex:repeat value="{! relatedContacts}" var="cid">
+                                        <hr/>
+                                        <div class="slds-grid slds-gutters">
+                                            <div class="slds-col slds-size_1-of-4">
                                                 
-                                                <br/>
-                                            </apex:repeat>
-                                            <br/>
-                                        </apex:repeat>   
-                                    </apex:outputPanel>
-                                </apex:pageBlock>
+                                                <apex:outputText value="{!cid.Name}" style="width:100%; display:block; font-weight:bold; align:center;" />
+                                                
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-4 slds-grid_align-center">
+                                                <apex:repeat value="{! classAndAttendee[cid.id]}" var="cad">
+                                                    <div class="slds-grid slds-gutters">
+                                                        <div class="slds-col slds-size_1-of-3"><apex:outputText value="{!cad.Class__r.Name}"/></div>
+                                                        <div class="slds-col slds-size_1-of-3"><apex:outputText value="{!cad.Class__r.Day__c}"/></div>
+                                                        <div class="slds-col slds-size_1-of-3"><apex:outputText value="{!cad.Class__r.Class_Time__c}"/></div>
+                                                    </div>
+                                                    <br/>
+                                                </apex:repeat>
+                                            </div> 
+                                            
+                                        </div>
+                                    </apex:repeat> 
+                                </div> 
+                                <!-- /content -->
                                 
-                                <!-- </apex:outputPanel> -->
                             </apex:outputPanel>
                         </apex:outputPanel>
                     </apex:outputPanel>
                     
-                    
-                    
-                    
                     <!-- confirmation screen for adding new class to an account -->
                     <apex:outputPanel id="ConfirmationPopup">
-                        <apex:outputPanel styleClass="slds-backdrop slds-backdrop_open" layout="block" rendered="{!classAddPopup}">
-                            <apex:outputPanel layout="block" rendered="{!classAddPopup}" 
-                                              style="position: fixed; z-index: 100; top: 50%; left: 50%; width:600px; height: 300px; 
-                                                     margin-left: -300px; margin-top: -150px; background-color: white; border-width: 5px; border-color: black; border-style:solid;">
+                        <apex:outputPanel styleClass="outer-popup" layout="block" rendered="{!classAddPopup}">
+                            <apex:outputPanel styleClass="inner-popup" layout="block" rendered="{!classAddPopup}">
+                                
                                 <apex:commandButton action="{!closeConfirm}" value="X" rerender="ConfirmationPopup" style="float: right;"/>
+                                
                                 <ul class="slds-has-inline-block-links_space">
                                     <br/>  
                                     <li>
-                                        <div align="center">
+                                        <div align="center" style="font-size:15px;">
                                             Who will be attending the class?
                                         </div>
                                     </li>
-                                    <br/><br/>
+                                    <br/>
+                                    <br/>
                                     <li>  
                                         <div align="center" >
-                                            <apex:outputPanel layout="block" style="overflow:auto;width:300px;height: 100px">
+                                            <apex:outputPanel layout="block" style="overflow:auto;width:500px;height: 100px; font-size:19px;">
                                                 <apex:pageBlock >
+                                                    <apex:pageMessages ></apex:pageMessages>
                                                     <apex:pageBlockTable value="{! contactToAdd }" var="ctd" id="AddTable">
                                                         <apex:column headerValue="Name">
                                                             <apex:outputText value="{!ctd.con.Name}"></apex:outputText>
                                                         </apex:column>
                                                         <apex:column >
                                                             <apex:facet name="header">
-                                                                <apex:inputCheckbox id="TopBox" value="{!topBox}" onchange="CallAction(); return false;">
+                                                                <apex:inputCheckbox id="TopBox" value="{!topBox}">
                                                                     <apex:actionSupport event="onclick" action="{!checkOrUncheckAll}" rerender="AddTable"/> 
                                                                 </apex:inputCheckBox>
                                                             </apex:facet>
                                                             <apex:inputCheckBox value="{!ctd.selected}"></apex:inputCheckBox>
                                                         </apex:column>
                                                     </apex:pageBlockTable>
-                                                    <apex:pageMessages ></apex:pageMessages>
                                                 </apex:pageBlock>
                                             </apex:outputPanel>
                                         </div>
