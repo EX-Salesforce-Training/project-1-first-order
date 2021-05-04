@@ -1,0 +1,42 @@
+<!-- Page use to show confirmation that the user have added the class -->
+<!-- This page is use to solve the problem with refreshing the page after adding a class cause resubmit -->
+
+<apex:page controller="ClassAddConfimationPageController" title="Confirmation Page" lightningStyleSheets="true">
+    
+    <head>
+        <apex:stylesheet value="{!$Resource.Styles}" />
+        <apex:stylesheet value="{!URLFOR($Asset.SLDS, '/')}"/>
+    </head>
+    
+    <body id = "body" class="slds-scope" style="background-color: blue;">
+        
+        <apex:slds />
+        <apex:form >
+            
+            <div class = "title-holder">
+                <h1 class = "slds-text-heading_large slds-align_absolute-center">Class Added Confirmation Page</h1>
+            </div>
+            
+            <!-- MAIN CONTENT -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Welcome to Aquatic!</h2>
+                        <p class="slds-m-top_x-small">We appreciate you!</p>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>Class information will be given through email.</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!goBackToClassList}" value="Back"/>
+                        <apex:commandButton styleClass="slds-button slds-button_Brand" action="{!goBackToClassList}" value="Home"/>
+                    </footer>
+                </div>
+            </section>
+            <!-- /MAIN CONTENT -->
+            
+            
+        </apex:form>
+    </body>
+</apex:page>

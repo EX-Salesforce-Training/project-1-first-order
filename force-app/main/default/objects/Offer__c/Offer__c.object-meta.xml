@@ -146,22 +146,21 @@
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>true</enableReports>
+    <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
-    <label>Class</label>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>Offer</label>
     <nameField>
-        <displayFormat>1{00000}</displayFormat>
-        <label>Class Number</label>
-        <trackHistory>false</trackHistory>
+        <displayFormat>OF-{0000}</displayFormat>
+        <label>Offer Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Classes</pluralLabel>
+    <pluralLabel>Offers</pluralLabel>
     <searchLayouts></searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
