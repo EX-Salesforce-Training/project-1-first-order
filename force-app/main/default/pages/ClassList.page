@@ -1,0 +1,288 @@
+<!-- Page to display all classes a user can add -->
+
+<apex:page standardStylesheets="false" standardController="Class__c" recordSetVar="classes" extensions="ClassListExtension" title="Class Listing" lightningStyleSheets="true">
+    
+    <html>
+        <head>
+    		<apex:stylesheet value="{!$Resource.Styles}" />
+            <style>
+                .inner-popup {
+                background-color: lightgrey;
+                border-radius: 10px;
+                margin: 10% 25% 25% 25%;
+                padding: 5px;
+                box-shadow: 0px 3px 7px rgba(1, 1, 1, 5);
+                background: #fff;
+                max-height: 50%;
+                overflow-y: auto;
+                }
+                .outer-popup{
+                z-index:4;
+                }
+            </style>
+        </head>
+        <body id = "body" class="slds-scope" style="background-color: blue;">
+            
+            <apex:slds />
+            <div id = "form">
+                <apex:form >
+                    
+                    <div class = "title-holder">
+                        <h1 class = "slds-text-heading_large slds-align_absolute-center">Class Listing</h1>
+                    </div>
+                    
+                    <!-- HEADER -->
+                    <!-- have previous and next button to traverse the record list -->
+                    <!-- also have the myclass button, display contacts and the class each contact is attending -->
+                    <div class="slds-page-header" style=" z-index:1; position: -webkit-sticky; position: sticky; top: 0;">
+                        
+                        <!-- LAYOUT GRID -->
+                        <div class="slds-grid">
+                            
+                            <!-- HEADING AREA -->
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact">
+                                            <use href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title_caps slds-line-height_reset">Aquatic</p>
+                                        <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">Class Listing</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /HEADING AREA -->
+                            
+                            <!-- VIEW ALL CURRENT CLASS BUTTON -->
+                            <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                                <div class="slds-button-group" role="group">
+                                    <!-- open a popup page to create new contact -->
+                                    <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!showAccountInfo}" value="My Class" rerender="AccountInfoPopup"/>
+                                </div>
+                            </div>
+                            <!-- /VIEW ALL CURRENT CLASS BUTTON -->
+                            
+                        </div>
+                        
+                        <!-- NEXT&PRV BUTTON -->
+                        <div align="center" draggable="false">
+                            <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!previous}" value="Previous" reRender="ClassList"/>
+                            <span>     </span>
+                            <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!next}" value="Next" reRender="ClassList"/>
+                        </div> 
+                        <!-- /NEXT&PRV BUTTON -->
+                        
+                        <!-- /LAYOUT GRID -->
+                    </div>
+                    <!-- /HEADER -->
+                    
+                    <br/>
+                    
+                    <!-- MAIN CONTENT -->
+                    <!-- where the list of class resides -->
+                    <apex:pageBlock id="ClassList">
+                            <apex:pageBlockTable value="{!classListUpdated}" var="c" styleClass="slds-table slds-table_cell-buffer slds-table_bordered slds-p-left_xxx-small">
+                                <apex:column headerValue="Instructor">
+                                    <div class="slds-tile slds-media slds-truncate"> 
+                                        <div class="slds-tile slds-media">
+                                            <div class="slds-media__figure">
+                                                <img class="slds-avatar slds-avatar_large" src="{!c.Instructor__r.SmallPhotoUrl}" alt="photo" />
+                                            </div>
+                                            <div class="slds-media__body">
+                                                <ul class="slds-has-dividers_bottom">
+                                                    <li class="slds-item"><apex:outputText value="{!c.Instructor__r.Name}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Email), 'None', c.Instructor__r.Email)}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Phone), 'None', c.Instructor__r.Phone)}"> </apex:outputText></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--maybe some image here -->
+                                </apex:column>
+                                <apex:column headerValue="Adding">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputField value="{! c.Adding__c}"/>                 
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Number">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Name}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Type">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Class_Type__c}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Time">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputField value="{! c.Class_Time__c}"/>           
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Day">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Day__c}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Start Date">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{0,date, yyyy/MM/dd, hh:mm}">
+                                            <apex:param value="{!c.Start_Date__c}"/>
+                                        </apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column headerValue="Class Price">
+                                    <div class="slds-tile slds-truncate">
+                                        <apex:outputText value="{!c.Class_Price__c}"></apex:outputText>
+                                    </div>
+                                </apex:column>
+                                <apex:column >
+                                    <apex:commandButton styleClass="slds-button slds-button_neutral" style="float:right;" value="Add Class" action="{!showConfirm}" rerender="ConfirmationPopup">
+                                        <apex:param name="chosenClassID" value="{!c.ID}" assignTo="{!theClass}"/>
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    <!-- /MAIN CONTENT -->  
+                    
+                    <br/>
+                    
+                    <!-- FOOTER -->
+                    <!-- doesn't really do much, just have the next and previous button -->
+                    <footer class="slds-card">
+                        <div class="slds-p-around_large">
+                            <div class="slds-grid slds-gutters slds-grid_align-center">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <span>Some Text</span>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <div align="center" draggable="false">
+                                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!previous}" value="Previous" reRender="ClassList" id="prvButton"/>
+                                        <span>     </span>
+                                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!next}" value="Next" reRender="ClassList" id="nxtButton"/>
+                                    </div> 
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <span style="float:right;">@Aquatic</span>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- /FOOTER -->
+                    
+                    <!-- POPUP -->
+                    <!-- show the current contacts on the account and what class they are taking. -->
+                    <apex:outputPanel id="AccountInfoPopup">
+                        <apex:outputPanel styleClass="outer-popup" layout="block" rendered="{!accInfoPopup}">
+                            <apex:outputPanel styleClass="inner-popup" layout="block" rendered="{!accInfoPopup}">
+                                
+                                <!-- header -->
+                                <div class="slds-page-header" style="position: -webkit-sticky; position: sticky; top: 0; background-color: #2f78de;">
+                                    <apex:outputText value="Primary User: {! primaryContact.Name}"
+                                                     style="text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; font-weight:bold; font-size:20px;"/>
+                                    <apex:commandButton action="{!closeAccountInfo}" value="X" rerender="AccountInfoPopup" style="float: right;"/>
+                                    <div class="slds-grid slds-gutters slds-grid_align-center slds-border" style="font-weight: bold; border-top: 2px solid #163663; border-bottom: 2px solid #163663;">
+                                        <div class="slds-col slds-size_1-of-4">name</div>
+                                        <div class="slds-col slds-size_1-of-4">class name</div>
+                                        <div class="slds-col slds-size_1-of-4">class day</div>
+                                        <div class="slds-col slds-size_1-of-4">class time</div>
+                                    </div>
+                                </div>
+                                <!-- /header -->
+                                
+                                <!-- content -->
+                                <div>
+                                    <br/>
+                                    <apex:repeat value="{! relatedContacts}" var="cid">
+                                        <hr/>
+                                        <div class="slds-grid slds-gutters">
+                                            <div class="slds-col slds-size_1-of-4">
+                                                
+                                                <apex:outputText value="{!cid.Name}" style="width:100%; display:block; font-weight:bold; align:center;" />
+                                                
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-4 slds-grid_align-center">
+                                                <apex:repeat value="{! classAndAttendee[cid.id]}" var="cad">
+                                                    <div class="slds-grid slds-gutters">
+                                                        <div class="slds-col slds-size_1-of-3"><apex:outputText value="{!cad.Class__r.Name}"/></div>
+                                                        <div class="slds-col slds-size_1-of-3"><apex:outputText value="{!cad.Class__r.Day__c}"/></div>
+                                                        <div class="slds-col slds-size_1-of-3"><apex:outputText value="{!cad.Class__r.Class_Time__c}"/></div>
+                                                    </div>
+                                                    <br/>
+                                                </apex:repeat>
+                                            </div> 
+                                            
+                                        </div>
+                                    </apex:repeat> 
+                                </div> 
+                                <!-- /content -->
+                                
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    
+                    <!-- confirmation screen for adding new class to an account -->
+                    <apex:outputPanel id="ConfirmationPopup">
+                        <apex:outputPanel styleClass="outer-popup" layout="block" rendered="{!classAddPopup}">
+                            <apex:outputPanel styleClass="inner-popup" layout="block" rendered="{!classAddPopup}">
+                                
+                                <apex:commandButton action="{!closeConfirm}" value="X" rerender="ConfirmationPopup" style="float: right;"/>
+                                
+                                <ul class="slds-has-inline-block-links_space">
+                                    <br/>  
+                                    <li>
+                                        <div align="center" style="font-size:15px;">
+                                            Who will be attending the class?
+                                        </div>
+                                    </li>
+                                    <br/>
+                                    <br/>
+                                    <li>  
+                                        <div align="center" >
+                                            <apex:outputPanel layout="block" style="overflow:auto;width:500px;height: 100px; font-size:19px;">
+                                                <apex:pageBlock >
+                                                    <apex:pageMessages ></apex:pageMessages>
+                                                    <apex:pageBlockTable value="{! contactToAdd }" var="ctd" id="AddTable">
+                                                        <apex:column headerValue="Name">
+                                                            <apex:outputText value="{!ctd.con.Name}"></apex:outputText>
+                                                        </apex:column>
+                                                        <apex:column >
+                                                            <apex:facet name="header">
+                                                                <apex:inputCheckbox id="TopBox" value="{!topBox}">
+                                                                    <apex:actionSupport event="onclick" action="{!checkOrUncheckAll}" rerender="AddTable"/> 
+                                                                </apex:inputCheckBox>
+                                                            </apex:facet>
+                                                            <apex:inputCheckBox value="{!ctd.selected}"></apex:inputCheckBox>
+                                                        </apex:column>
+                                                    </apex:pageBlockTable>
+                                                </apex:pageBlock>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </li>
+                                    <br/>
+                                    <li>
+                                        <div align="center">
+                                            Click yes will add the class to your account.
+                                        </div>
+                                    </li>
+                                    <br/>
+                                    <li>
+                                        <div align="center" draggable="false" style="float:bottom;">
+                                            <apex:commandButton action="{!closeConfirm}" value="Cancel" rerender="ConfirmationPopup" styleClass="slds-button slds-button_neutral"/>
+                                            <span>         </span>
+                                            <apex:commandButton action="{!saveList}" value="Save" styleClass="slds-button slds-button_brand"/>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <!-- / POPUP -->
+                    
+                </apex:form>
+            </div>
+        </body>
+    </html>
+</apex:page>
