@@ -1,5 +1,189 @@
-<apex:page controller="EmployeeApplicationWizard">
-    <script>
+<apex:page controller="EmployeeApplicationWizard" showHeader="false" sidebar="false">
+    <style>
+        body {
+        background-image: url("{!URLFOR($Resource.aa, 'logo.jpg')}") !important;
+        background-position: center; !important;
+        background-size: cover !important;
+
+        }
+        
+    </style>
+    <apex:slds >       
+        <apex:form >    
+            <div id="form1" class="slds-form-element " style="width:50%; border-style: outset; padding: 20px;   margin-left: auto; margin-right: auto; margin-top:22%; background-color: white; ">
+                
+                <span data-slds-strength="1" title="Description of the icon when needed" class="slds-icon-strength">
+                    <svg viewBox="0 0 27 7" aria-hidden="true">
+                        <circle r="3.025" cx="3.5" cy="3.5"></circle>
+                        <circle r="3.025" cx="13.5" cy="3.5"></circle>
+                        <circle r="3.025" cx="23.5" cy="3.5"></circle>
+                    </svg>
+                    
+                </span>
+                
+                <fieldset class="slds-form-element slds-form-element_stacked">
+                    <legend class="slds-align_absolute-center slds-form-element__label" style="font-weight: 1000; font-size: 150%;">New Employee Application</legend>   </fieldset>
+                <fieldset class="slds-form-element slds-form-element_stacked">
+                    <legend class="slds-form-element__legend slds-form-element__label">Step 1 of 3</legend>   </fieldset>
+                
+                <fieldset class="slds-form-element slds-form-element_stacked">
+                    <legend class="slds-form-element__legend slds-form-element__label">Contact Information</legend>   </fieldset>
+                
+                <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>First Name</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.First_Name__c}"/>
+                    </div>
+                </div> 
+                
+                <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>Last Name</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Last_Name__c}"/>
+                    </div>
+                </div> 
+                
+                <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>Phone</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Phone__c}" id="formPhone"/>
+                    </div>
+                </div> 
+                
+                <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>Email</label>
+                    <div class="slds-form-element__control">
+                        <apex:inputField styleClass="slds-select webformField slds-size--12-of-12" value="{!wiz.Email__c}" id="formEmail"/>
+                    </div>
+                </div> 
+                
+                
+                <div class="slds-docked-form-footer">
+                    <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step2}" value="Next" onclick="return mystep2()"  immediate="true"/>
+                    <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
+                    
+                    <div class="slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        
+                        <section id="myDIVFirst" aria-describedby="dialog-body-id-4" aria-labelledby="dialog-heading-id-2" class="slds-popover slds-popover_error slds-nubbin_bottom-left" role="dialog" style="display:none; position:absolute;bottom:56px;left:50%;margin-left:62px;transform:translateX(-50%)">
+                            <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon-inverse" title="Close dialog">
+                                <svg class="slds-button__icon" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Close dialog</span>
+                            </button>
+                            
+                            <header class="slds-popover__header">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate ">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-utility-error">
+                                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-truncate slds-text-heading_medium" id="dialog-heading-id-2" title="Resolve error">Field Invalid</h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-popover__body" id="dialog-body-id-4">
+                                <p>First Name can not be empty.
+                                </p>
+                            </div>
+                        </section>
+                        
+                        
+                        <section id="myDIVLast" aria-describedby="dialog-body-id-4" aria-labelledby="dialog-heading-id-2" class="slds-popover slds-popover_error slds-nubbin_bottom-left" role="dialog" style="display:none; position:absolute;bottom:56px;left:50%;margin-left:62px;transform:translateX(-50%)">
+                            <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon-inverse" title="Close dialog">
+                                <svg class="slds-button__icon" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Close dialog</span>
+                            </button>
+                            <header class="slds-popover__header">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate ">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-utility-error">
+                                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-truncate slds-text-heading_medium" id="dialog-heading-id-2" title="Resolve error">Field Invalid</h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-popover__body" id="dialog-body-id-4">
+                                <p>Last Name can not be empty.
+                                </p>
+                            </div>
+                        </section>
+                        
+                        
+                        <section id="myDIVemail" aria-describedby="dialog-body-id-4" aria-labelledby="dialog-heading-id-2" class="slds-popover slds-popover_error slds-nubbin_bottom-left" role="dialog" style="display:none; position:absolute;bottom:56px;left:50%;margin-left:62px;transform:translateX(-50%)">
+                            <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon-inverse" title="Close dialog">
+                                <svg class="slds-button__icon" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Close dialog</span>
+                            </button>
+                            <header class="slds-popover__header">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate ">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-utility-error">
+                                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-truncate slds-text-heading_medium" id="dialog-heading-id-2" title="Resolve error">Field Invalid</h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-popover__body" id="dialog-body-id-4">
+                                <p>Please enter a valid email address.
+                                </p>
+                            </div>
+                        </section>
+                        
+                        <section id="myDIVphone" aria-describedby="dialog-body-id-4" aria-labelledby="dialog-heading-id-2" class="slds-popover slds-popover_error slds-nubbin_bottom-left" role="dialog" style="display:none; position:absolute;bottom:56px;left:50%;margin-left:62px;transform:translateX(-50%)">
+                            <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon-inverse" title="Close dialog">
+                                <svg class="slds-button__icon" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Close dialog</span>
+                            </button>
+                            <header class="slds-popover__header">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate ">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-utility-error">
+                                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-truncate slds-text-heading_medium" id="dialog-heading-id-2" title="Resolve error">Field Invalid</h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-popover__body" id="dialog-body-id-4">
+                                <p>Please enter a valid Phone number.
+                                </p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                
+            </div> 
+        </apex:form>
+        <div style='padding-bottom: 500px;'>
+            
+        </div>
+    </apex:slds>
+    <script type="text/javascript" >
     function confirmCancel() {
         var isCancel = confirm("Are you sure you want to cancel the application");
         if (isCancel) {
@@ -7,22 +191,53 @@
         else{
             return false;
         }
-    }  
+    } 
+    function mystep2() {
+        // ===================VALIDATION=================
+        // First Name validationn
+        if (document.getElementById('j_id0:j_id3:j_id5').value==''){
+            document.getElementById("myDIVFirst").style.display='block';
+            document.getElementById("myDIVLast").style.display='none';
+            document.getElementById("myDIVemail").style.display='none';
+            document.getElementById("myDIVphone").style.display='none';
+            return false;
+        }
+        
+        // Last Name validation
+        if (document.getElementById('j_id0:j_id3:j_id7').value==''){
+            document.getElementById("myDIVFirst").style.display='none';
+            document.getElementById("myDIVLast").style.display='block';
+            document.getElementById("myDIVemail").style.display='none';
+            document.getElementById("myDIVphone").style.display='none';
+            return false;
+        }
+        
+        // Phone validation
+        var phone = document.getElementById('j_id0:j_id3:formPhone').value;
+        var regp = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        //Check phone format
+        if (regp.test(phone)==false){
+            document.getElementById("myDIVFirst").style.display='none';
+            document.getElementById("myDIVLast").style.display='none';
+            document.getElementById("myDIVemail").style.display='none';
+            document.getElementById("myDIVphone").style.display='block';
+            return false;
+        }
+        
+        // Email validation
+        var email = document.getElementById('j_id0:j_id3:formEmail').value;
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        //Check email format
+        if (reg.test(email)==false){
+            document.getElementById("myDIVFirst").style.display='none';
+            document.getElementById("myDIVLast").style.display='none';
+            document.getElementById("myDIVemail").style.display='block';
+            document.getElementById("myDIVphone").style.display='none';
+            return false;
+        }
+        
+        return true; 
+    }
+    
     </script>
-    <apex:image url="{!URLFOR($Resource.aa, 'logo.jpg')}" width="150" height="150"/>
-    <apex:sectionHeader title="New Employee Application" subtitle="Step 1 of 2"/>
-    <apex:form >
-        
-        
-        <apex:pageBlock Title="Employee Information" mode="edit">
-            <apex:pageBlockButtons location="bottom">
-                <apex:commandButton action="{!step2}" value="Next"/>
-                <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
-            </apex:pageBlockButtons>
-            <apex:pageBlockSection title="Contact Information">
-                <apex:inputField id="contactFirstName" value="{!wiz.First_Name__c}"/>
-                <apex:inputField id="contactLastName" value="{!wiz.Last_Name__c}"/>
-            </apex:pageBlockSection>
-        </apex:pageBlock>
-    </apex:form>
 </apex:page>

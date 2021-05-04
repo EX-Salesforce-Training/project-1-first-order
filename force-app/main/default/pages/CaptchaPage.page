@@ -1,0 +1,41 @@
+<apex:page controller="GoogleReCAPTCHAController" sidebar="false" showHeader="false" cache="false" id="pg">
+    <script type='text/javascript' src='https://www.google.com/recaptcha/api.js'/>
+    <script type='text/javascript'>
+        function recaptchaCallback() {
+        var btnVerify = document.getElementById("pg:fm:pb:pbb:btnVerify");
+        alert(btnVerify);
+        if (btnVerify.classList.contains("hideButton") ) {
+            btnVerify.classList.remove("hideButton");
+        }
+    }
+    </script> 
+     
+    <style type="text/CSS">
+        .hideButton{
+        display:none !important;
+        }
+    </style>
+    <apex:form id="fm">
+        <apex:pageBlock title="Google Captcha Example" id="pb">
+            <apex:pageBlockSection columns="1" id="pbs"> 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="fnField" value="First Name"/>
+                    <apex:inputText value="{!firstName}" id="fnField"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="lnField" value="Last Name"/>
+                    <apex:inputText value="{!lastName}" id="lnField"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <div data-type="image" class="g-recaptcha" data-sitekey="{!publicKey}" data-callback="recaptchaCallback"></div>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!verified}">
+                    <p>Google reCAPTCHA verified successfully.</p>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons id="pbb" location="bottom">
+                <apex:commandButton action="{!submit}" styleClass="hideButton" value="Verify" id="btnVerify"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
