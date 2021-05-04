@@ -15,11 +15,8 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>ClassList</members>
+        <members>ClassAddConfirmationPage</members>
         <name>ApexPage</name>
     </types>
     <types>
