@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Time_of_incident_must_be_in_the_past</fullName>
-    <active>true</active>
-    <description>The time an incident takes place cannot be in the future</description>
-    <errorConditionFormula>Incident_Time__c &gt; NOW() + 2/24</errorConditionFormula>
-    <errorDisplayField>Incident_Time__c</errorDisplayField>
-    <errorMessage>Incident time cannot be in the future.</errorMessage>
-</ValidationRule>

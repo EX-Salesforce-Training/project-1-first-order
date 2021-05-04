@@ -1,7 +1,0 @@
-<apex:page standardController="Account" recordSetVar="accs">
-    <apex:pageBlock title="Display Contacts for Accounts">
-        <apex:pageBlockTable value="{!accs}" var="item">
-        	<apex:column value="{!item.name}"/>    
-        </apex:pageBlockTable>
-    </apex:pageBlock>
-</apex:page>
