@@ -1,5 +1,11 @@
 public class EmployeeApplicationWizard {
     public Employee_Application__c wiz {get;set;}
+    public String publicKey {get;set;}
+    public Boolean verified { get; private set; }
+    //Google Secret Key
+    private static String secretKey = '6LcXM8IaAAAAAG-FJPdwqrtSPN291e5y72RhSRcJ';
+    private static String baseUrl = 'https://www.google.com/recaptcha/api/siteverify';
+    
     public EmployeeApplicationWizard(){
         wiz = new Employee_Application__c();
         this.publicKey = '6LcXM8IaAAAAAJKpA9e99o_Un7Pnr9b2k-AHA6j2';//Google Site Key or Public Key
@@ -29,16 +35,13 @@ public class EmployeeApplicationWizard {
     
     
     
-    public Boolean verified { get; private set; }
     public String response  { 
         get {
             return ApexPages.currentPage().getParameters().get('g-recaptcha-response');
         }
     }
-    public String firstName{get;set;}
-    public String lastName{get;set;}
-    public String publicKey {get;set;}
     
+    // return remote server
     private String remoteHost{
         get {
             String ret = '127.0.0.1';
@@ -52,36 +55,7 @@ public class EmployeeApplicationWizard {
         }
     }
     
-    //Google Secret Key
-    private static String secretKey = '6LcXM8IaAAAAAG-FJPdwqrtSPN291e5y72RhSRcJ';
-    private static String baseUrl = 'https://www.google.com/recaptcha/api/siteverify';
-    
-    public PageReference submit(){
-        if (response == null ){
-            //Google recaptcha empty response
-            return null;
-        }
-        HttpResponse res = getGoogleReCAPTCHAResponse(baseUrl,'secret=' + secretKey + '&remoteip=' + remoteHost + '&response=' + response);
-        if (res != null ) {
-            JSONParser parser = JSON.createParser(res.getBody());
-            while (parser.nextToken() != null) {
-                if ((parser.getCurrentToken() == JSONToken.FIELD_NAME) && (parser.getText() == 'success')) {
-                    parser.nextToken();
-                    this.verified = parser.getBooleanValue();
-                    break;
-                }
-            }            
-        }   
-        if(this.verified){
-            //Add your logic
-            return null;
-        }
-        else{
-            //Stay on page to re-try reCAPTCHA
-            return null;
-        }
-    }
-    
+     
     //Get Google reCAPTCHA Service Response 
     private static HttpResponse getGoogleReCAPTCHAResponse(string requestURL, string body){
         HttpResponse response = null;

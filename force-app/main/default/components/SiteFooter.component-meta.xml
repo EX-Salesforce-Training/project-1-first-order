@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>51.0</apiVersion>
-    <availableInTouch>true</availableInTouch>
-    <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>EmployeeApplicationPage1</label>
+    <description>Default Lightning Platform site footer component</description>
+    <label>SiteFooter</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
         <minorNumber>7</minorNumber>
@@ -14,4 +13,4 @@
         <minorNumber>1</minorNumber>
         <namespace>trlhdtips</namespace>
     </packageVersions>
-</ApexPage>
+</ApexComponent>

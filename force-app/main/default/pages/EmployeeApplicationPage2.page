@@ -3,13 +3,13 @@
         body {
         background-image: url("{!URLFOR($Resource.aa, 'logo.jpg')}") !important;
         background-position: center; !important;
-        background-repeat: repeat !important;
+        background-size: cover !important;
         
         }     
     </style>
     <apex:slds >       
         <apex:form >    
-            <div class="slds-form-element " style="width:50%; border-style: outset; padding: 20px; margin: 300px; margin-top:20%; background-color: white;">
+            <div id="form1" class="slds-form-element " style="width:50%; border-style: outset; padding: 20px;   margin-left: auto; margin-right: auto; margin-top:22%; background-color: white;">
                 
                 <span data-slds-strength="2" title="Description of the icon when needed" class="slds-icon-strength">
                     <svg viewBox="0 0 27 7" aria-hidden="true">
@@ -55,6 +55,9 @@
                 
             </div> 
         </apex:form>
+        <div style='padding-bottom: 500px;'>
+            
+        </div>
     </apex:slds>
     <script>
     function confirmCancel() {
