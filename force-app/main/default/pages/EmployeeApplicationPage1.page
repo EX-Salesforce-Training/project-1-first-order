@@ -59,7 +59,7 @@
                 
                 
                 <div class="slds-docked-form-footer">
-                    <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step2}" value="Next" onclick="return mystep2()"  immediate="true"/>
+                    <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step2}" value="Next" onclick="return mystep2()"/>
                     <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
                     
                     <div class="slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
