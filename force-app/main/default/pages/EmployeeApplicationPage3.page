@@ -64,7 +64,7 @@
             
             <div class="slds-docked-form-footer">
                 <apex:commandButton styleClass="slds-button slds-button_brand" action="{!step2}" value="Previous"/>
-                <apex:commandButton styleClass="slds-button slds-button_brand" action="{!save}" value="Submit" onclick="return mysave()"  immediate="true"/>
+                <apex:commandButton styleClass="slds-button slds-button_brand" action="{!save}" value="Submit" onclick="return mysave()"/>
                 <apex:commandButton styleClass="slds-button slds-button_neutral " action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
                 
             </div>
