@@ -128,5 +128,5 @@ ____
 For page to work you will need the community profile cloned and given access to read and write class__c along with access right to their account and the contacts on the account.
 The customer portal user will not be creating classes, and they will not be given the tool to, but they need the rule to create new Class_roster__c records which is a detail to both contact and class__c so accessing both is necessary.
 
-For the Instructor information, if the user with the instructor profile have a contact, it would be much easier to change the query in the controller to get that. As it is currently stand, I am using formula fields to get instructor User information in Class__c itself which have no way of getting the PhotoUrl to display. So if you want to display the instructor photo you will either need to enforce that all instructor need to have a contact, or else keep put in some random place holder like now.
+For the Instructor information, if the user with the instructor profile have a contact, it would be much easier to change the query in the controller to get that. As it is currently stand, I am using formula fields to get instructor User information in Class__c itself which have no way of getting the PhotoUrl to display. So if you want to display the instructor photo you will either need to enforce that all instructor need to have a contact.
   
