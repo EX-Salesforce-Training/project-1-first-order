@@ -4,7 +4,7 @@
     
     <html>
         <head>
-    		<apex:stylesheet value="{!$Resource.Styles}" />
+            <apex:stylesheet value="{!$Resource.Styles}" />
             <style>
                 .inner-popup {
                 background-color: lightgrey;
@@ -21,7 +21,7 @@
                 }
             </style>
         </head>
-        <body id = "body" class="slds-scope">
+        <body id = "body" class="slds-scope" style="background-image: url({!URLFOR($Resource.aa, 'logo.jpg')}) !important; background-size:cover;">
             
             <apex:slds />
             <div id = "form">
@@ -88,25 +88,18 @@
                                     <div class="slds-tile slds-media slds-truncate"> 
                                         <div class="slds-tile slds-media">
                                             <div class="slds-media__figure">
-                                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact">
-                                                    <use href="{!URLFOR($Asset.SLDS, 'assets/icons/utility/user')}"></use>
-                                        </svg>
+                                                <img class="slds-avatar slds-avatar_large" src="{!c.Instructor__r.SmallPhotoUrl}" alt="photo" />
                                             </div>
                                             <div class="slds-media__body">
                                                 <ul class="slds-has-dividers_bottom">
-                                                    <li class="slds-item"><apex:outputText value="{!c.InstructorName__c}"> </apex:outputText></li>
-                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.InstructorEmail__c), 'None', c.InstructorEmail__c)}"> </apex:outputText></li>
-                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.InstructorPhone__c), 'None', c.InstructorEmail__c)}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!c.Instructor__r.Name}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Email), 'None', c.Instructor__r.Email)}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Phone), 'None', c.Instructor__r.Phone)}"> </apex:outputText></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <!--maybe some image here -->
-                                </apex:column>
-                                <apex:column headerValue="Adding">
-                                    <div class="slds-tile slds-truncate">
-                                        <apex:outputField value="{! c.Adding__c}"/>                 
-                                    </div>
                                 </apex:column>
                                 <apex:column headerValue="Class Number">
                                     <div class="slds-tile slds-truncate">
