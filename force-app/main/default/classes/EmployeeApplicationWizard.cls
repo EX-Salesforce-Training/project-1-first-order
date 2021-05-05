@@ -1,3 +1,9 @@
+
+/*--------------------------------------------------------
+ * Title: Employee Application Wizard
+ * Usage: Candidate can fill out the form. This controller will redirect the buttons
+ * Authors: Phong Nguyen
+ */
 public class EmployeeApplicationWizard {
     public Employee_Application__c wiz {get;set;}
     public String publicKey {get;set;}
@@ -6,22 +12,30 @@ public class EmployeeApplicationWizard {
     private static String secretKey = '6LcXM8IaAAAAAG-FJPdwqrtSPN291e5y72RhSRcJ';
     private static String baseUrl = 'https://www.google.com/recaptcha/api/siteverify';
     
+    //constructor
     public EmployeeApplicationWizard(){
         wiz = new Employee_Application__c();
         this.publicKey = '6LcXM8IaAAAAAJKpA9e99o_Un7Pnr9b2k-AHA6j2';//Google Site Key or Public Key
         this.verified = false;
     }
+    
+    //button step3
     public PageReference step3(){
         return Page.EmployeeApplicationPage3;
     }
+    
+    //button step 2
     public PageReference step2() {
         system.debug(wiz);
         return Page.EmployeeApplicationPage2;
     }
+    
+    // button step 1
     public PageReference step1() {
         return Page.EmployeeApplicationPage1;
     }
     
+    // Save button Change the url when you want to direct to different page
     public PageReference save() {
         upsert wiz;
         system.debug(wiz);
@@ -29,6 +43,8 @@ public class EmployeeApplicationWizard {
         employeeApplicationPage.setRedirect(true);
         return employeeApplicationPage; 
     }
+    
+    // Save Cancel button Change the url when you want to direct to different page
     public PageReference cancel() {
         PageReference employeeApplicationPage = new PageReference('https://aquatic-alchemy-developer-edition.na156.force.com/s/');
         employeeApplicationPage.setRedirect(true);
@@ -36,7 +52,7 @@ public class EmployeeApplicationWizard {
     }
     
     
-    
+    //captcha response
     public String response  { 
         get {
             return ApexPages.currentPage().getParameters().get('g-recaptcha-response');

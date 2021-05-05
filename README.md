@@ -4,6 +4,11 @@ An aquatic portal site for users to do various tasks.
 
 ____
 
+### **Style Guides**
+ * [Apex](files/StyleGuides/apex.cls, "Apex")
+ * [VisualForce](files/StyleGuides/visualForce.page, "VisualForce")
+ * [CSS](files/StyleGuides/css.css, "CSS")
+
 ### **Visualforce Pages**
 
  * Event Scheduler : Schedule and view events
