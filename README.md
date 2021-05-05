@@ -73,7 +73,7 @@ ____
    * Query for all classes -> StandardSetController
      * Use setFilterID(List View Filter ID) to specify filter of use on the list
      * use getRecords() to update classListUpdated to actually populate class List with classes
-   * Query for Account of the current user, using their userInfo.getUserId() with either their contact ID or Account ID -> currentUserAcc
+   * Query for ContactId with userInfo.getUserId() From the User obj -> use ContactId to get AccountId from Contact obj -> use AccountId to get Account information. -> currentUserAccount
      * Not sure which ID to use for digital experience, might cause trouble with null access if no Account gotten
    * Query for all related contact on the current user account -> relatedContacts
    * Query for all current class roster item -> classAndAttendee
