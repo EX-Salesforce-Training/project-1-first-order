@@ -38,37 +38,34 @@ public class ClassListExtension {
     
     public ApexPages.StandardSetController controller {get;set;}
     
+    
     // CONSTRUCTOR
     public ClassListExtension(ApexPages.StandardSetController stc){
         
         // getting all the class for now
-        controller = stc;
+        controller = stc;               
         controller = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id, Name,
-                                                   Class_Price__c, Class_Time__c, Class_Type__c, Day__c, Start_Date__c, Adding__c,
-                                                   Instructor__r.Name, Instructor__r.Email, Instructor__r.Phone, Instructor__r.SmallPhotoUrl 
-                                                   FROM Class__c]));
+                                       Class_Price__c, Class_Time__c, Class_Type__c, Day__c, Start_Date__c, Adding__c,
+                                       Instructor__c, InstructorName__c, InstructorPhone__c, InstructorEmail__c
+                                       FROM Class__c]));
         
+		        
         // set controller to a specific size, it default to 20
         //controller.setPageSize(20);
         
         // use the filter to get rid of class that is not adding.
-       	//controller.setFilterId('00B5Y00000IpQGzUAN');
+       	// controller.setFilterId('00B5Y00000IpQGzUAN');
         
         classListUpdated = controller.getRecords();
         // for the select all contact.
 		topBox = false;
         
         // query for the current user account
-        // currently using ownerId and specific name, need to change later
-        Contact currContact;
-        try {
-            currContact = [SELECT AccountID FROM Contact WHERE firstName =: UserInfo.getFirstName() AND lastName =: UserInfo.getLastName() LIMIT 1];
-        }
-        catch (Exception e) {
-            currContact = [SELECT AccountID FROM Contact LIMIT 1];
-        }
-        
-        currentUserAcc = [SELECT Id, Name, Primary__c, Primary__r.Name, OwnerId FROM Account WHERE Id=:currContact.AccountID Limit 1];
+        // userID->contactID->accountID->Account object
+        ID currentConID = [SELECT ID, ContactID FROM User WHERE Id=:UserInfo.getUserId() Limit 1].contactId;
+        ID currentAccID = [SELECT ID, AccountID FROM Contact WHERE Id=:currentConID limit 1].accountId;
+        currentUserAcc = [SELECT Id, Name, Primary__c, Primary__r.Name FROM Account WHERE Id=:currentAccId Limit 1];
+        //Id=:currentAccId
         
         // use the current account to get all the contacts
         relatedContacts = [SELECT Id, Name, AccountID FROM Contact WHERE AccountID=:currentUserAcc.Id];
@@ -82,10 +79,11 @@ public class ClassListExtension {
             classAndAttendee.put(c.Id, new List<Class_Roster__c>());
         }
         
-        /* populate map with classes belong to those contacts
-        for(Class_Roster__c c: [SELECT Id, Contact__r.id, Class__r.id, Class__r.Name, Class__r.Class_Time__c,  Class__r.Class_Type__c,  Class__r.Day__c FROM Class_Roster__c]){
-                classAndAttendee.get(c.Contact__r.id).add(c);
-        }*/
+        // populate map with classes belong to those contacts
+        for(Class_Roster__c c: [SELECT Id, Contact__c, Class__r.id, Class__r.Name, Class__r.Class_Time__c,  Class__r.Class_Type__c,  Class__r.Day__c FROM Class_Roster__c
+                               WHERE Contact__r.AccountID=:currentAccID]){
+            classAndAttendee.get(c.Contact__c).add(c);
+        }
         
         // populate contacts to addclasswrapper
         contactToAdd = new List<AddClassWrapper>();
