@@ -15,6 +15,7 @@ public class EmployeeApplicationWizard {
         return Page.EmployeeApplicationPage3;
     }
     public PageReference step2() {
+        system.debug(wiz);
         return Page.EmployeeApplicationPage2;
     }
     public PageReference step1() {
@@ -22,8 +23,9 @@ public class EmployeeApplicationWizard {
     }
     
     public PageReference save() {
-        PageReference employeeApplicationPage = new PageReference('https://aquatic-alchemy-developer-edition.na156.force.com/s/');
         upsert wiz;
+        system.debug(wiz);
+        PageReference employeeApplicationPage = new PageReference('https://aquatic-alchemy-developer-edition.na156.force.com/s/');
         employeeApplicationPage.setRedirect(true);
         return employeeApplicationPage; 
     }

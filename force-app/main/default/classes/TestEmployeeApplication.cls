@@ -14,14 +14,14 @@ public class TestEmployeeApplication {
 
         
         String Pagecancel = controller.cancel().getURL();
-        System.assertEquals('/home/home.jsp', Pagecancel);
+        System.assertEquals('https://aquatic-alchemy-developer-edition.na156.force.com/s/', Pagecancel);
         
 //========================Test Data Section======================
         controller.wiz.Phone__c = '1234567890';
         controller.wiz.Email__c = 'john@test.com';
         
         String Pagesave = controller.save().getURL();
-        System.assertEquals('/home/home.jsp', Pagesave);
+        System.assertEquals('https://aquatic-alchemy-developer-edition.na156.force.com/s/', Pagesave);
         
         // Verify that the success page displays
 

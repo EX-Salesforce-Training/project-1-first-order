@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD:force-app/main/default/objects/Employee_Application__c/fields/Years_Experience__c.field-meta.xml
+    <fullName>Years_Experience__c</fullName>
+    <externalId>false</externalId>
+    <label>Years Experience</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+=======
+    <fullName>Description__c</fullName>
+    <externalId>false</externalId>
+    <label>Description</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+>>>>>>> P1-Jared:force-app/main/default/objects/Public_Event__c/fields/Description__c.field-meta.xml
+</CustomField>
