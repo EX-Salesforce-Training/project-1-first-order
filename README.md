@@ -74,7 +74,7 @@ ____
      * Use setFilterID(List View Filter ID) to specify filter of use on the list
      * use getRecords() to update classListUpdated to actually populate class List with classes
    * Query for ContactId with userInfo.getUserId() From the User obj -> use ContactId to get AccountId from Contact obj -> use AccountId to get Account information. -> currentUserAccount
-     * Not sure which ID to use for digital experience, might cause trouble with null access if no Account gotten
+     * A community user would need to have a contact and an account, otherwise this sequence will throw an error
    * Query for all related contact on the current user account -> relatedContacts
    * Query for all current class roster item -> classAndAttendee
      * Use classAndAttendee map to populate my class popup
@@ -121,4 +121,12 @@ ____
 
 * Only have one function to redirect back to the class list page
 
+____
+
+# **Some Notes**
+
+For page to work you will need the community profile cloned and given access to read and write class__c along with access right to their account and the contacts on the account.
+Naturally they will not be given the tool to make new classes, but they need the rule to create new roster obj which is a detail to both contact and class__c.
+
+For the Instructor information, if the user with the instructor profile have a contact, it would be much easier to change the query in the controller to get that. As it is currently stand, I am using formula fields to get instructor User information in Class__c itself which have no way of getting the PhotoUrl to display. So if you want to display the instructor photo you will either need to enforce that all instructor need to have a contact, or else keep put in some random place holder like now.
   
