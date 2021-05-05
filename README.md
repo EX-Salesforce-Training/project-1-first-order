@@ -5,9 +5,11 @@ An aquatic portal site for users to do various tasks.
 ____
 
 ### **Style Guides**
- * [Apex](files/StyleGuides/apex.cls, "Apex")
- * [VisualForce](files/StyleGuides/visualForce.page, "VisualForce")
- * [CSS](files/StyleGuides/css.css, "CSS")
+ * [Apex](files/StyleGuides/apex.cls)
+ 
+ * [VisualForce](files/StyleGuides/visualForce.page)
+ 
+ * [CSS](files/StyleGuides/css.css)
 
 ### **Visualforce Pages**
 
