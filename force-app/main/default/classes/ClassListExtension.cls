@@ -38,16 +38,18 @@ public class ClassListExtension {
     
     public ApexPages.StandardSetController controller {get;set;}
     
+    
     // CONSTRUCTOR
     public ClassListExtension(ApexPages.StandardSetController stc){
         
         // getting all the class for now
-        controller = stc;
+        controller = stc;               
         controller = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id, Name,
-                                                   Class_Price__c, Class_Time__c, Class_Type__c, Day__c, Start_Date__c, Adding__c,
-                                                   Instructor__r.Name, Instructor__r.Email, Instructor__r.Phone, Instructor__r.SmallPhotoUrl 
-                                                   FROM Class__c]));
+                                       Class_Price__c, Class_Time__c, Class_Type__c, Day__c, Start_Date__c, Adding__c,
+                                       Instructor__c, InstructorName__c, InstructorPhone__c, InstructorEmail__c
+                                       FROM Class__c]));
         
+		        
         // set controller to a specific size, it default to 20
         //controller.setPageSize(20);
         
@@ -63,6 +65,7 @@ public class ClassListExtension {
         ID currentConID = [SELECT ID, ContactID FROM User WHERE Id=:UserInfo.getUserId() Limit 1].contactId;
         ID currentAccID = [SELECT ID, AccountID FROM Contact WHERE Id=:currentConID limit 1].accountId;
         currentUserAcc = [SELECT Id, Name, Primary__c, Primary__r.Name FROM Account WHERE Id=:currentAccId Limit 1];
+        //Id=:currentAccId
         
         // use the current account to get all the contacts
         relatedContacts = [SELECT Id, Name, AccountID FROM Contact WHERE AccountID=:currentUserAcc.Id];

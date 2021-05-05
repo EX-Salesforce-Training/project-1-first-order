@@ -88,13 +88,15 @@
                                     <div class="slds-tile slds-media slds-truncate"> 
                                         <div class="slds-tile slds-media">
                                             <div class="slds-media__figure">
-                                                <img class="slds-avatar slds-avatar_large" src="{!c.Instructor__r.SmallPhotoUrl}" alt="photo" />
+                                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact">
+                                                    <use href="{!URLFOR($Asset.SLDS, 'assets/icons/utility/user')}"></use>
+                                        </svg>
                                             </div>
                                             <div class="slds-media__body">
                                                 <ul class="slds-has-dividers_bottom">
-                                                    <li class="slds-item"><apex:outputText value="{!c.Instructor__r.Name}"> </apex:outputText></li>
-                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Email), 'None', c.Instructor__r.Email)}"> </apex:outputText></li>
-                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.Instructor__r.Phone), 'None', c.Instructor__r.Phone)}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!c.InstructorName__c}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.InstructorEmail__c), 'None', c.InstructorEmail__c)}"> </apex:outputText></li>
+                                                    <li class="slds-item"><apex:outputText value="{!IF(ISNULL(c.InstructorPhone__c), 'None', c.InstructorEmail__c)}"> </apex:outputText></li>
                                                 </ul>
                                             </div>
                                         </div>
