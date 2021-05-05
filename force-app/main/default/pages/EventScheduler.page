@@ -6,7 +6,7 @@
             <title>Event Scheduler</title>
         </head>
         
-        <body id = "body">
+        <body style="background-image: url({!URLFOR($Resource.aa, 'logo.jpg')}) !important; background-size:cover;">
             <div id = "form">
                 <apex:form >
                     <div class = "title-holder">
@@ -98,7 +98,7 @@
                         <apex:outputPanel styleclass="outer-popup" rendered="{!successPopup}">
                             <apex:outputPanel styleclass="inner-popup" layout="block">
                                 <apex:pageBlock title="Success!">
-                                    <p>Your event has been submitted, please wait for manager approval.</p>
+                                    <p>Your event has been successfully submitted!</p>
                                     <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">Event Details</h1>
                                     <apex:pageBlockTable value="{!newEvent}" var="ev">
                                         <apex:column value="{!ev.Subject}"></apex:column>

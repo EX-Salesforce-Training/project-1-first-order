@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Priority__c</fullName>
+    <fullName>Certification__c</fullName>
     <externalId>false</externalId>
-    <label>Priority</label>
+    <label>Certification</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -11,19 +12,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>High</fullName>
+                <fullName>The Basic Swim Instructor (BSI) certification</fullName>
                 <default>false</default>
-                <label>High</label>
+                <label>The Basic Swim Instructor (BSI) certification</label>
             </value>
             <value>
-                <fullName>Medium</fullName>
+                <fullName>Water Safety Instructor (WSI) certification</fullName>
                 <default>false</default>
-                <label>Medium</label>
-            </value>
-            <value>
-                <fullName>Low</fullName>
-                <default>false</default>
-                <label>Low</label>
+                <label>Water Safety Instructor (WSI) certification</label>
             </value>
         </valueSetDefinition>
     </valueSet>

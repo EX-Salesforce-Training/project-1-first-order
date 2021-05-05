@@ -5,7 +5,6 @@
     
     <head>
         <apex:stylesheet value="{!$Resource.Styles}" />
-        <apex:stylesheet value="{!URLFOR($Asset.SLDS, '/')}"/>
     </head>
     
     <body id = "body" class="slds-scope" style="background-color: blue;">

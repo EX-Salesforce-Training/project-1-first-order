@@ -16,29 +16,24 @@
     height: 100%;
     width: 100%;
     position: fixed;
-    z-index: 4;
 }
 
 .inner-popup {
     background-color: lightgrey;
     border-radius: 10px;
-    margin: 10% 25% 25% 25%;
+    margin: 25%;
     padding: 5px;
     box-shadow: 0px 3px 7px rgba(1, 1, 1, 5);
     background: #fff;
-    max-height: 50%;
-    overflow-y: auto;
 }
 
+/*
 #body {
     background-image: url("aa/logo.jpg");
     background-size: cover;
     padding: 25% 15% 15% 15%;
 }
-
-#hours-op {
-    text-align: center;
-}
+*/
 
 #form {
     border-radius: 5px;

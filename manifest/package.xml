@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    
     <types>
         <members>Account</members>
         <members>*</members>
@@ -15,8 +16,11 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>ClassList</members>
-        <members>ClassAddConfirmationPage</members>
+        <members>*</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>*</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -38,10 +42,6 @@
     <types>
         <members>*</members>
         <name>StaticResource</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ListView</name>
     </types>
     <version>51.0</version>
 </Package>
