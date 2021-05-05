@@ -21,3 +21,5 @@
  
 * Controller:
   * ClassAddConfimationPageController: only redirect the user back to main page.
+
+____
