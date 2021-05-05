@@ -1,3 +1,6 @@
+<!-- This is Page1 Employee Application, Page2 and 3 are similar. These Pages are mostly using inline style If you have any problem about this Page Please let me know-->
+<-- Author: Phong Nguyen-->
+
 <apex:page controller="EmployeeApplicationWizard" showHeader="false" sidebar="false">
     <style>
         body {
