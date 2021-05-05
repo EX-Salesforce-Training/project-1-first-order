@@ -22,13 +22,13 @@ public class EmployeeApplicationWizard {
     }
     
     public PageReference save() {
-        PageReference employeeApplicationPage = new PageReference('/home/home.jsp');
+        PageReference employeeApplicationPage = new PageReference('https://aquatic-alchemy-developer-edition.na156.force.com/s/');
         upsert wiz;
         employeeApplicationPage.setRedirect(true);
         return employeeApplicationPage; 
     }
     public PageReference cancel() {
-        PageReference employeeApplicationPage = new PageReference('/home/home.jsp');
+        PageReference employeeApplicationPage = new PageReference('https://aquatic-alchemy-developer-edition.na156.force.com/s/');
         employeeApplicationPage.setRedirect(true);
         return employeeApplicationPage; 
     }

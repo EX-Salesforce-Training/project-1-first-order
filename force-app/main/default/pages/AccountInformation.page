@@ -1,0 +1,25 @@
+<apex:page standardStylesheets="true" standardController="Account" recordSetVar="accs" >
+    <apex:slds />
+    <apex:form >
+       
+        <apex:pageBlock title="Display Account Information">
+            
+    		<apex:pageBlockSection >
+                <div style="text-align:center;">
+            	<apex:pageBlockTable value="{!accs}" var="acc" >
+                
+                <apex:column headerValue="Account Name" value="{!acc.Name}"/>
+              	<apex:column headerValue="Phone" value="{!acc.Phone}"/>
+                <apex:column headerValue="Billing Address" value="{!acc.Billingstreet}"/>
+                
+            	</apex:pageBlockTable> 
+                </div>
+        	</apex:pageBlockSection>
+             
+       	</apex:pageBlock>
+        
+           
+ 
+       
+    </apex:form>
+</apex:page>

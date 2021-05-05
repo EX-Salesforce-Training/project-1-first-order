@@ -1,0 +1,55 @@
+<apex:page standardController="Account" recordSetVar="accounts" extensions="AccountExtension">
+    <apex:slds />
+    <apex:stylesheet value="{!$Resource.Styles}" />
+    <html>
+        <head>
+            <title>VisualForce Style Guide</title>
+        </head>
+        
+        <!-- In order to override the slds body styling, use the body ID -->
+        <body id = "body">
+
+            <!-- Page content should go in the form div -->
+            <div id = "form">
+                <apex:form >
+
+                    <!-- Each page should have a title that goes into the title holder div -->
+                    <div class = "title-holder">
+                        <h1 class = "slds-text-heading_large slds-align_absolute-center">Sample Content</h1>
+                    </div>
+
+                    <!-- Major sections of the page should be enclosed in a begin and end comment -->
+                    <!-- Begin Account Table -->
+                    <apex:pageBlock title="Accounts">
+                        <apex:pageBlockButtons >
+                            <apex:commandButton action="{!AlternatePopup}" value="Show Popup" reRender="popup"/>
+                            <apex:commandButton action="{!Next}" value="Next" reRender="accountView"/>
+                        </apex:pageBlockButtons>
+                        <apex:pageBlockSection id="accountView">
+                            <apex:pageBlockTable value="{!display}" var="acc">
+                                <apex:column value="{!acc.name}"></apex:column>
+                            </apex:pageBlockTable>
+                        </apex:pageBlockSection>
+                    </apex:pageBlock>
+                    <!-- End Account Table -->
+
+					<!-- Any popups should come at the end of the file -->
+                    
+                    <!-- Start Example Popup -->
+                    <apex:outputPanel id="popup">
+                        <apex:outputPanel styleclass="outer-popup" rendered="{!popupVisible}">
+                            <apex:outputPanel styleclass="inner-popup" layout="block">
+                                <apex:pageBlock title="Success!">
+                                    <p>The popup has popped up!</p>
+                                    <apex:commandButton action="{!AlternatePopup}" value="Close" reRender="popup"/>
+                                </apex:pageBlock>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <!-- End Example Popup -->
+                </apex:form>
+            </div>
+        </body>
+    </html>
+
+</apex:page>

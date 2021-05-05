@@ -60,7 +60,15 @@ public class ClassListExtension {
         
         // query for the current user account
         // currently using ownerId and specific name, need to change later
-        currentUserAcc = [SELECT Id, Name, Primary__c, Primary__r.Name, OwnerId FROM Account WHERE OwnerId=:UserInfo.getUserId() Limit 1];
+        Contact currContact;
+        try {
+            currContact = [SELECT AccountID FROM Contact WHERE firstName =: UserInfo.getFirstName() AND lastName =: UserInfo.getLastName() LIMIT 1];
+        }
+        catch (Exception e) {
+            currContact = [SELECT AccountID FROM Contact LIMIT 1];
+        }
+        
+        currentUserAcc = [SELECT Id, Name, Primary__c, Primary__r.Name, OwnerId FROM Account WHERE Id=:currContact.AccountID Limit 1];
         
         // use the current account to get all the contacts
         relatedContacts = [SELECT Id, Name, AccountID FROM Contact WHERE AccountID=:currentUserAcc.Id];
@@ -74,10 +82,10 @@ public class ClassListExtension {
             classAndAttendee.put(c.Id, new List<Class_Roster__c>());
         }
         
-        // populate map with classes belong to those contacts
+        /* populate map with classes belong to those contacts
         for(Class_Roster__c c: [SELECT Id, Contact__r.id, Class__r.id, Class__r.Name, Class__r.Class_Time__c,  Class__r.Class_Type__c,  Class__r.Day__c FROM Class_Roster__c]){
                 classAndAttendee.get(c.Contact__r.id).add(c);
-        }
+        }*/
         
         // populate contacts to addclasswrapper
         contactToAdd = new List<AddClassWrapper>();
