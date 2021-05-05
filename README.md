@@ -6,7 +6,7 @@ ____
 
 ### **Visualforce Pages**
 
- * Event Scheduler : Schedule and view event
+ * Event Scheduler : Schedule and view events
  
  * Class Listing : Add and view classes
 
