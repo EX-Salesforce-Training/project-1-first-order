@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subject__c</fullName>
+    <externalId>false</externalId>
+    <label>Subject</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Birthday Party</fullName>
+                <default>false</default>
+                <label>Birthday Party</label>
+            </value>
+            <value>
+                <fullName>Private Event</fullName>
+                <default>false</default>
+                <label>Private Event</label>
+            </value>
+            <value>
+                <fullName>Swim Meet</fullName>
+                <default>false</default>
+                <label>Swim Meet</label>
+            </value>
+            <value>
+                <fullName>Aquatic Class</fullName>
+                <default>false</default>
+                <label>Aquatic Class</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

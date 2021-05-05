@@ -1,22 +1,21 @@
 public class EventSchedulerExtension {
-    public List<Event> eventList {get; set;}
-    private List<Event> allEvents;
-    public Event filter {get; set;}
-    public Event newEvent {get; set;}
+    public List<Public_Event__c> eventList {get; set;}
+    private List<Public_Event__c> allEvents;
+    public Public_Event__c newEvent {get; set;}
     public boolean successPopup {get; set;}
+    public Public_Event__c filter {get; set;}
     
     public EventSchedulerExtension(ApexPages.StandardSetController controller) {
         successPopup = false;
-        filter = new Event();
-        newEvent = new Event();
-        newEvent.IsPrivate = true;
+        filter = new Public_Event__c();
+        newEvent = new Public_Event__c();
         
         FindEvents();
         allEvents = eventList;
     }
     
     //Saves the event to the database
-    public void Save() {
+    public void SaveEvent() {
         if (!IsValidEvent())
             return;
         
@@ -36,16 +35,15 @@ public class EventSchedulerExtension {
         successPopup = false;
         
         //Setup for the next event to be entered
-        newEvent = new Event();
-        newEvent.IsPrivate = true;
+        newEvent = new Public_Event__c();
     }
     
     //Finds relevant events in the database
     public void FindEvents() {
-        if (filter.ActivityDate != null)
-            eventList = [SELECT subject, StartDateTime, EndDateTime, IsAllDayEvent FROM Event WHERE ActivityDate =: filter.ActivityDate AND IsPrivate = false];
+        if (filter.EndDateTime__c != null)
+            eventList = [SELECT subject__c, StartDateTime__c, EndDateTime__c, IsAllDayEvent__c FROM Public_Event__c  WHERE ActivityDate__c =: filter.EndDateTime__c.Date()];
         else
-            eventList = [SELECT subject, StartDateTime, EndDateTime, IsAllDayEvent FROM Event WHERE IsPrivate = true];
+            eventList = [SELECT subject__c, StartDateTime__c, EndDateTime__c, IsAllDayEvent__c FROM Public_Event__c];
     }
     
     //Checks whether an event is valid by checking against the current event list
@@ -55,8 +53,8 @@ public class EventSchedulerExtension {
         if (newEvent == null)
             return false;
         
-        DateTime newStart = newEvent.StartDateTime;
-        DateTime newEnd = newEvent.EndDateTime;
+        DateTime newStart = newEvent.StartDateTime__c;
+        DateTime newEnd = newEvent.EndDateTime__c;
         
         //Enforce all events to have a start time
         if (newStart == null) {
@@ -65,14 +63,14 @@ public class EventSchedulerExtension {
         }
         
         //Only all day events can be missing an end time
-        if (newEnd == null && !newEvent.IsAllDayEvent) {
+        if (newEnd == null && !newEvent.IsAllDayEvent__c) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Partial day events must have an end.'));
             return false;
         }
         
         //An all day event should have an end date equal to the start date
-        if (newEvent.IsAllDayEvent) {
-            newEvent.EndDateTime = newEvent.StartDateTime;
+        if (newEvent.IsAllDayEvent__c) {
+            newEvent.EndDateTime__c = newEvent.StartDateTime__c;
             newEnd = newStart;
         }
         
@@ -106,24 +104,24 @@ public class EventSchedulerExtension {
             return false;
         }
         
-        for (Event e : allEvents) {
-            System.debug(e.EndDateTime.Day());
+        for (Public_Event__c e : allEvents) {
+            
             //If there's an all day event on the new event day or an event on a new all-day event, throw the errors
-            if (e.IsAllDayEvent && (e.StartDateTime.Day() == newStart.day() || e.StartDateTime.Day() == newEnd.day())) {
+            if (e.IsAllDayEvent__c && (e.StartDateTime__c.Day() == newStart.day() || e.StartDateTime__c.Day() == newEnd.day())) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Event conflicts with an all-day event, choose another day.'));
                 return false;
             }
-            if(newEvent.IsAllDayEvent) {
-                if (newStart.day() == e.StartDateTime.day() || newStart.day() == e.EndDateTime.Day()) {
+            if(newEvent.IsAllDayEvent__c) {
+                if (newStart.day() == e.StartDateTime__c.day() || newStart.day() == e.EndDateTime__c.Day()) {
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'An events is already scheduled for this day.'));
                     return false;
                 }
             }
             
             //If the start or end times conflict with existing events, catch and report
-            boolean invalidStartDate = newStart == e.StartDateTime || (newStart >= e.StartDateTime && newStart <= e.EndDateTime);
-            boolean invalidEndDate = newEnd == e.EndDateTime || (newEnd >= e.StartDateTime && newEnd <= e.EndDateTime);
-            boolean overlapping = newEnd >= e.EndDateTime && newStart <= e.StartDateTime;
+            boolean invalidStartDate = newStart == e.StartDateTime__c || (newStart >= e.StartDateTime__c && newStart <= e.EndDateTime__c);
+            boolean invalidEndDate = newEnd == e.EndDateTime__c || (newEnd >= e.StartDateTime__c && newEnd <= e.EndDateTime__c);
+            boolean overlapping = newEnd >= e.EndDateTime__c && newStart <= e.StartDateTime__c;
             if (invalidStartDate) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Start Date conflicts with an existing event.'));
                 return false;

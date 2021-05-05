@@ -35,7 +35,7 @@
                         <apex:pageBlockButtons >
                             <span>Filter Date: </span>
                             <apex:inputField styleClass="slds-form-element__label"
-                                             value="{!filter.ActivityDate}"></apex:inputField>
+                                             value="{!filter.EndDateTime__c}"></apex:inputField>
                             <br/>
                             <apex:commandButton styleclass="slds-align_absolute-center slds-button slds-button_brand "
                                                 action="{!FindEvents}" value="Find" reRender="eventView"/>
@@ -43,10 +43,10 @@
                         
                         <apex:pageBlockSection id="eventView">
                             <apex:pageBlockTable value="{!eventList}" var="ev">
-                                <apex:column value="{!ev.Subject}"></apex:column>
-                                <apex:column value="{!ev.StartDateTime}"></apex:column>
-                                <apex:column value="{!ev.EndDateTime}"></apex:column>
-                                <apex:column value="{!ev.IsAllDayEvent}"></apex:column>
+                                <apex:column value="{!ev.Subject__c}"></apex:column>
+                                <apex:column value="{!ev.StartDateTime__c}"></apex:column>
+                                <apex:column value="{!ev.EndDateTime__c}"></apex:column>
+                                <apex:column value="{!ev.IsAllDayEvent__c}"></apex:column>
                             </apex:pageBlockTable>
                             
                             <!-- Begin hours of operation section -->
@@ -81,15 +81,16 @@
                         <!-- End Title/Icon -->
                         
                         <apex:pageBlockSection id="eventInput">
-                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.Subject}"></apex:inputField>
-                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.IsAllDayEvent}"></apex:inputField>
-                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.StartDateTime}"></apex:inputField>
-                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.EndDateTime}"></apex:inputField>
-                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.Description}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.Subject__c}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.IsAllDayEvent__c}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.StartDateTime__c}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.EndDateTime__c}"></apex:inputField>
+                            <apex:inputField styleClass="slds-form-element__label" value="{!newEvent.Description__c}"></apex:inputField>
                             <apex:pageMessages ></apex:pageMessages>
                         </apex:pageBlockSection>
                         <apex:commandButton styleClass="slds-align_absolute-center slds-button slds-button_brand"
-                                            action="{!Save}" value="Save" reRender="eventInput,confirm-popup"/>
+                                            action="{!SaveEvent}" value="Save" reRender="eventInput,confirm-popup"/>
+                        <br />
                     </apex:pageBlock>
                     <!-- End event input section -->
                     
@@ -101,10 +102,10 @@
                                     <p>Your event has been successfully submitted!</p>
                                     <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate">Event Details</h1>
                                     <apex:pageBlockTable value="{!newEvent}" var="ev">
-                                        <apex:column value="{!ev.Subject}"></apex:column>
-                                        <apex:column value="{!ev.StartDateTime}"></apex:column>
-                                        <apex:column value="{!ev.EndDateTime}"></apex:column>
-                                        <apex:column value="{!ev.IsAllDayEvent}"></apex:column>
+                                        <apex:column value="{!ev.Subject__c}"></apex:column>
+                                        <apex:column value="{!ev.StartDateTime__c}"></apex:column>
+                                        <apex:column value="{!ev.EndDateTime__c}"></apex:column>
+                                        <apex:column value="{!ev.IsAllDayEvent__c}"></apex:column>
                                     </apex:pageBlockTable>
                                     <br />
                                     <apex:commandButton styleClass="slds-align_absolute-center slds-button slds-button_brand"
