@@ -1,8 +1,10 @@
 # **Aquatic Alchemy**
 
 An aquatic portal site for users to do various tasks.
-https://user-images.githubusercontent.com/43973882/116771685-2b6aad00-aa02-11eb-863f-2977a9cbaac4.PNG
+<img src="https://user-images.githubusercontent.com/43973882/116771685-2b6aad00-aa02-11eb-863f-2977a9cbaac4.PNG" width="800" height="500">
 ____
+### Test on the Controller
+<img src="https://user-images.githubusercontent.com/43973882/116772255-800e2800-aa02-11eb-8362-c296d4a2e319.png">
 
 ### **Style Guides**
  * [Apex](files/StyleGuides/apex.cls)
